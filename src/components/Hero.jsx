@@ -1,11 +1,27 @@
+import React from "react";
+
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center text-center py-20 px-6 bg-gradient-to-b from-green-100 to-white dark:from-gray-900 dark:to-black">
-      <h2 className="text-4xl md:text-6xl font-extrabold text-green-700 dark:text-green-400 mb-4">Track. Earn. Grow.</h2>
-      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mb-8">Your gateway to free stocks, live market data, and smarter investing.</p>
-      <div className="flex gap-4">
-        <a href="#" className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition">View Free Offers</a>
-        <a href="#" className="border border-green-600 text-green-600 px-6 py-3 rounded-xl hover:bg-green-50 dark:hover:bg-green-900 transition">Join the Community</a>
+    <section className="grid md:grid-cols-2 gap-8 items-center py-16 px-6">
+      <div>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Earn bonuses while you invest.
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Track real-time markets and sign-up incentives from top brokers and advisors.
+        </p>
+        <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-all">
+          See Today’s Top Offers
+        </button>
+      </div>
+      <div className="bg-white p-6 shadow-card rounded-xl border border-gray-100">
+        <h3 className="text-lg font-semibold mb-3">Market Overview</h3>
+        <ul className="text-sm text-gray-700 space-y-2">
+          <li className="flex justify-between"><span>US Indices</span><span className="text-green-600">+0.56%</span></li>
+          <li className="flex justify-between"><span>Futures</span><span className="text-green-600">+0.23%</span></li>
+          <li className="flex justify-between"><span>Crypto</span><span className="text-red-500">-0.27%</span></li>
+          <li className="flex justify-between"><span>Forex</span><span className="text-green-600">+0.41%</span></li>
+        </ul>
       </div>
     </section>
   );
