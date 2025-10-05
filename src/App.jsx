@@ -95,11 +95,7 @@ export default function App() {
       <header className="border-b border-slate-800 bg-[#050B1A]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
           <div className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-emerald-300 via-emerald-500 to-emerald-700 shadow-[0_10px_30px_-12px_rgba(16,185,129,0.8)]" />
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-300">MyFreeStocks</p>
-              <p className="text-lg font-semibold text-white">Unlock Free Investing Rewards</p>
-            </div>
+            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
             <a href="#offers" className="transition hover:text-emerald-300">Offers</a>
@@ -318,12 +314,9 @@ export default function App() {
 
       <footer id="contact" className="mt-24 border-t border-slate-800 bg-[#050B1A]">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-300 via-emerald-500 to-emerald-700 shadow-[0_10px_30px_-12px_rgba(16,185,129,0.8)]" />
-            <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-300">MyFreeStocks</p>
-              <p className="text-xs text-slate-400">Curated free stock offers & robo-advisor insights</p>
-            </div>
+          <div>
+            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-8 w-auto mb-3" />
+            <p className="text-xs text-slate-400">Curated free stock offers & robo-advisor insights</p>
           </div>
           <div className="text-sm text-slate-400">
             © {new Date().getFullYear()} MyFreeStocks.com. All rights reserved.
