@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <g>
+    <path d="M30 55 L50 25 L70 55" stroke="#00b67a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="90" y="53" font-family="Inter, sans-serif" font-size="36" fill="#1e293b" font-weight="600">
+      MyFreeStocks
+    </text>
+  </g>
+</svg>
