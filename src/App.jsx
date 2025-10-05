@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const tickerItems = [
   { symbol: "AAPL", change: "+1.24%" },
@@ -84,6 +84,11 @@ const advisors = [
 ];
 
 export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const handleCloseMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="min-h-screen bg-[#050B1A] text-slate-100">
       <style>{`
@@ -109,6 +114,59 @@ export default function App() {
           >
             Compare Offers
           </a>
+          <button
+            type="button"
+            onClick={handleToggleMenu}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition duration-200 ease-in-out hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span className="sr-only">Toggle navigation menu</span>
+            <span className="flex h-5 w-6 flex-col items-center justify-between">
+              <span
+                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
+                  isMenuOpen ? "translate-y-1.5 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
+                  isMenuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
+                  isMenuOpen ? "-translate-y-1.5 -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          className={`md:hidden transform border-t border-slate-800 bg-[#0B1622] text-white transition-all duration-200 ease-in-out ${
+            isMenuOpen ? "max-h-96 opacity-100" : "pointer-events-none max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="flex flex-col gap-2 px-4 py-4 text-sm font-semibold">
+            <a href="#top" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+              Home
+            </a>
+            <a href="#offers" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+              Offers
+            </a>
+            <a href="#compare" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+              Compare
+            </a>
+            <a href="#ai-robo" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+              Robo-Advisors
+            </a>
+            <a
+              href="#offers"
+              onClick={handleCloseMenu}
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
+            >
+              See Offers
+            </a>
+          </nav>
         </div>
       </header>
 
