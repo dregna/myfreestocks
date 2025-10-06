@@ -103,13 +103,13 @@ export default function App() {
             <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <a href="#offers" className="transition hover:text-emerald-300">Offers</a>
+            <a href="/offers" className="transition hover:text-emerald-300">Offers</a>
             <a href="#how-it-works" className="transition hover:text-emerald-300">How It Works</a>
             <a href="#ai-robo" className="transition hover:text-emerald-300">AI Robo-Advisors</a>
             <a href="#contact" className="transition hover:text-emerald-300">Contact</a>
           </nav>
           <a
-            href="#offers"
+            href="/offers"
             className="hidden rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110 md:inline-flex"
           >
             Compare Offers
@@ -150,7 +150,7 @@ export default function App() {
             <a href="#top" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
               Home
             </a>
-            <a href="#offers" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+            <a href="/offers" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
               Offers
             </a>
             <a href="#compare" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
@@ -160,7 +160,7 @@ export default function App() {
               Robo-Advisors
             </a>
             <a
-              href="#offers"
+              href="/offers"
               onClick={handleCloseMenu}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
             >
@@ -205,7 +205,7 @@ export default function App() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="#offers"
+                  href="/offers"
                   className="rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/40 transition hover:scale-[1.02]"
                 >
                   View Top Offers
@@ -255,7 +255,7 @@ export default function App() {
                   </li>
                 </ul>
                 <a
-                  href="#offers"
+                  href="/offers"
                   className="mt-8 inline-flex w-full justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
                 >
                   Claim Your Free Stocks
