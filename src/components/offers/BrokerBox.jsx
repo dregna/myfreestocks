@@ -146,10 +146,16 @@ export default function BrokerBox({ offer, isTopPick = false }) {
         </span>
       )}
 
-      <ScoreBadge
-        score={computedScore}
-        className="absolute right-6 top-6 shadow-lg shadow-emerald-500/20"
-      />
+      <Link
+        to={`/offers/${slug ?? id}`}
+        className="absolute right-6 top-6 inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
+        aria-label={`Read the ${name} broker review`}
+      >
+        <ScoreBadge
+          score={computedScore}
+          className="shadow-lg shadow-emerald-500/20"
+        />
+      </Link>
 
       <div className="flex flex-col gap-4 pr-0">
         <div className="flex items-start gap-4">
