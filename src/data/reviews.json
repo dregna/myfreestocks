@@ -1,0 +1,145 @@
+[
+  {
+    "id": "robinhood-review",
+    "brokerId": "robinhood",
+    "slug": "robinhood",
+    "title": "Robinhood Review (2025)",
+    "summary": "Best for: New investors seeking an easy-to-use mobile platform and commission-free trades.",
+    "topStrengths": [
+      "Simple interface",
+      "Fractional shares and crypto",
+      "Fast account setup"
+    ],
+    "cautions": [
+      "Limited tools and research",
+      "Customer service can lag"
+    ],
+    "currentPromo": "Free stock (value up to $200) when signing up.",
+    "fullText": "Robinhood remains a top choice for beginner investors. The zero-commission model and sleek mobile experience are appealing, though advanced traders may want more depth."
+  },
+  {
+    "id": "webull-review",
+    "brokerId": "webull",
+    "slug": "webull",
+    "title": "Webull Review (2025)",
+    "summary": "Best for: Active traders who want advanced charting, extended hours, and stock rewards.",
+    "topStrengths": [
+      "Level II data and complex order types",
+      "Integrated options analytics",
+      "Powerful mobile and desktop workstations"
+    ],
+    "cautions": [
+      "Interface overwhelms brand-new investors",
+      "Phone support is limited"
+    ],
+    "currentPromo": "Get 6–12 free stocks (value $3–$300 each) when you open and fund an account.",
+    "fullText": "Webull shines for self-directed traders who crave data-rich tools without platform fees. If you want deep analytics and extended-hours access, Webull delivers—just be prepared for a steeper learning curve."
+  },
+  {
+    "id": "moomoo-review",
+    "brokerId": "moomoo",
+    "slug": "moomoo",
+    "title": "Moomoo Review (2025)",
+    "summary": "Best for: Active traders seeking deep data, Level II quotes, and multi-market access.",
+    "topStrengths": [
+      "Global market coverage",
+      "Institutional-grade analytics",
+      "Community insights and education"
+    ],
+    "cautions": [
+      "Interface can feel complex",
+      "Promotional timelines rotate quickly"
+    ],
+    "currentPromo": "Earn up to 15 free stocks (value up to $2,000) when you deposit qualifying funds.",
+    "fullText": "Moomoo is built for traders who want to analyze every angle of the market. Deep charting, Level II data, and cross-border access are compelling, but newcomers may need time to master the workspace."
+  },
+  {
+    "id": "sofi-review",
+    "brokerId": "sofi",
+    "slug": "sofi",
+    "title": "SoFi Invest Review (2025)",
+    "summary": "Best for: Members who want automated portfolios, active trading, and banking perks in one app.",
+    "topStrengths": [
+      "Commission-free stock and ETF trades",
+      "Access to CFP® professionals",
+      "Integrated checking and savings"
+    ],
+    "cautions": [
+      "Advanced order types are limited",
+      "Investment lineup leans on proprietary ETFs"
+    ],
+    "currentPromo": "Earn up to $3,000 when you open and fund a new account.",
+    "fullText": "SoFi Invest combines goal-based automation, active investing, and cash management under one login. It’s a strong fit for members who value simplicity and bundled perks, though advanced traders may prefer more specialized tools."
+  },
+  {
+    "id": "wealthfront-review",
+    "brokerId": "wealthfront",
+    "slug": "wealthfront",
+    "title": "Wealthfront Review (2025)",
+    "summary": "Best for: Hands-off investors who want automated investing, tax optimization, and a single hub for cash + investing.",
+    "topStrengths": [
+      "Automated tax-loss harvesting",
+      "Diversified ETF portfolios",
+      "Low 0.25% annual fee",
+      "Integrated cash management"
+    ],
+    "cautions": [
+      "No live advisor support",
+      "Performance depends on tax status"
+    ],
+    "currentPromo": "Up to $5,000 managed free for new clients.",
+    "fullText": "Wealthfront continues to lead robo-investing with strong automation, tax optimization, and low-cost portfolios. Ideal for hands-off investors who want long-term efficiency."
+  },
+  {
+    "id": "betterment-review",
+    "brokerId": "betterment",
+    "slug": "betterment",
+    "title": "Betterment Review (2025)",
+    "summary": "Best for: Long-term investors wanting automated portfolios, cash tools, and goal tracking.",
+    "topStrengths": [
+      "Goal-based planning",
+      "Automatic rebalancing",
+      "FDIC-insured cash reserve"
+    ],
+    "cautions": [
+      "0.25% advisory fee impacts small balances",
+      "No direct stock selection"
+    ],
+    "currentPromo": "Get up to 1 year managed free depending on deposit amount.",
+    "fullText": "Betterment keeps long-term investors organized with goal-based automation, smart rebalancing, and built-in cash tools. It’s effortless to use, but investors wanting individual security selection will need a separate brokerage."
+  },
+  {
+    "id": "fidelity-review",
+    "brokerId": "fidelity",
+    "slug": "fidelity",
+    "title": "Fidelity Investments Review (2025)",
+    "summary": "Best for: Research-driven investors who want retirement planning, full-service support, and $0 trades.",
+    "topStrengths": [
+      "Institutional-grade research",
+      "Extensive retirement planning resources",
+      "Dedicated support across channels"
+    ],
+    "cautions": [
+      "Platform depth can feel complex"
+    ],
+    "currentPromo": "Occasional transfer and deposit bonuses — verify current promos.",
+    "fullText": "Fidelity excels as a full-service platform with elite research, planning tools, and customer care. It’s the pick for investors building serious long-term strategies, even if the platform takes time to explore."
+  },
+  {
+    "id": "schwab-review",
+    "brokerId": "schwab",
+    "slug": "schwab",
+    "title": "Charles Schwab Review (2025)",
+    "summary": "Best for: All-around investors and retirement savers who value guidance, education, and low-cost funds.",
+    "topStrengths": [
+      "Robust education and planning",
+      "Extensive branch network",
+      "Broad lineup of Schwab index funds"
+    ],
+    "cautions": [
+      "Interface design feels traditional"
+    ],
+    "currentPromo": "Transfer bonuses and cash rewards (varies by deposit amount).",
+    "fullText": "Charles Schwab balances digital tools with human guidance. Investors get strong service, low-cost index options, and nationwide branches, even if the interface skews more classic than cutting-edge."
+  }
+]
