@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const tickerItems = [
   { symbol: "AAPL", change: "+1.24%" },
@@ -85,6 +86,25 @@ const advisors = [
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const getDesktopNavClass = (targetPath, { highlight = true } = {}) => {
+    const isActive = targetPath && location.pathname === targetPath;
+
+    return `transition ${
+      isActive && highlight
+        ? "text-emerald-400 font-semibold border-b-2 border-emerald-400"
+        : "text-slate-200 hover:text-emerald-300"
+    }`;
+  };
+
+  const getMobileNavClass = (targetPath, { highlight = true } = {}) => {
+    const isActive = targetPath && location.pathname === targetPath;
+
+    return `rounded-lg px-3 py-2 transition ${
+      isActive && highlight ? "bg-white/10 text-emerald-300" : "hover:bg-white/10"
+    }`;
+  };
 
   const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
   const handleCloseMenu = () => setIsMenuOpen(false);
@@ -103,10 +123,18 @@ export default function App() {
             <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <a href="/offers" className="transition hover:text-emerald-300">Offers</a>
-            <a href="#how-it-works" className="transition hover:text-emerald-300">How It Works</a>
-            <a href="#ai-robo" className="transition hover:text-emerald-300">AI Robo-Advisors</a>
-            <a href="#contact" className="transition hover:text-emerald-300">Contact</a>
+            <a href="/offers" className={getDesktopNavClass("/offers")}>
+              Offers
+            </a>
+            <a href="#how-it-works" className={getDesktopNavClass("/", { highlight: false })}>
+              How It Works
+            </a>
+            <a href="#ai-robo" className={getDesktopNavClass("/", { highlight: false })}>
+              AI Robo-Advisors
+            </a>
+            <a href="#contact" className={getDesktopNavClass("/", { highlight: false })}>
+              Contact
+            </a>
           </nav>
           <a
             href="/offers"
@@ -147,16 +175,24 @@ export default function App() {
           }`}
         >
           <nav className="flex flex-col gap-2 px-4 py-4 text-sm font-semibold">
-            <a href="#top" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+            <a href="#top" onClick={handleCloseMenu} className={getMobileNavClass("/")}>
               Home
             </a>
-            <a href="/offers" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+            <a href="/offers" onClick={handleCloseMenu} className={getMobileNavClass("/offers")}>
               Offers
             </a>
-            <a href="#compare" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+            <a
+              href="#compare"
+              onClick={handleCloseMenu}
+              className={getMobileNavClass("/", { highlight: false })}
+            >
               Compare
             </a>
-            <a href="#ai-robo" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
+            <a
+              href="#ai-robo"
+              onClick={handleCloseMenu}
+              className={getMobileNavClass("/", { highlight: false })}
+            >
               Robo-Advisors
             </a>
             <a
