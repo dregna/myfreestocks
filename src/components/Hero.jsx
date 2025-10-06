@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -10,9 +11,12 @@ export default function Hero() {
         <p className="text-gray-600 mb-6">
           Track real-time markets and sign-up incentives from top brokers and advisors.
         </p>
-        <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-all">
+        <Link
+          to="/offers"
+          className="inline-flex rounded-lg bg-primary px-6 py-3 text-white transition-all hover:bg-secondary"
+        >
           See Today’s Top Offers
-        </button>
+        </Link>
       </div>
       <div className="bg-white p-6 shadow-card rounded-xl border border-gray-100">
         <h3 className="text-lg font-semibold mb-3">Market Overview</h3>
