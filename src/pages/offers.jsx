@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ScoreCard from "../components/score/ScoreCard";
 import ScoreBadge from "../components/score/ScoreBadge";
-import brokers from "../data/brokers.json";
+import useBrokerData from "../hooks/useBrokerData";
 
 function computeScore(breakdown = {}) {
   const values = Object.values(breakdown).map((value) => Number(value));
@@ -14,16 +14,73 @@ function computeScore(breakdown = {}) {
   return Math.round(total / values.length);
 }
 
+function formatVerificationDate(dateString) {
+  if (!dateString) {
+    return "Last verified 2025";
+  }
+
+  const parsed = new Date(dateString);
+  if (Number.isNaN(parsed.getTime())) {
+    return `Verified ${dateString}`;
+  }
+
+  return parsed.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  });
+}
+
 export default function OffersPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {
+    data: brokerData,
+    isLoading: brokersLoading,
+    error: brokersError,
+  } = useBrokerData();
 
   const offers = useMemo(
     () =>
-      brokers.map((offer) => ({
-        ...offer,
-        computedScore: computeScore(offer.score?.breakdown ?? {}),
-      })),
-    []
+      brokerData.map((offer) => {
+        const computedScore = Number.isFinite(offer?.score?.overall)
+          ? Number(offer.score.overall)
+          : computeScore(offer.score?.breakdown ?? {});
+
+        const offerDetails = offer?.offer ?? {};
+
+        return {
+          ...offer,
+          computedScore,
+          offerDetails: {
+            value:
+              offerDetails.value ??
+              offerDetails.headline ??
+              offerDetails.summary ??
+              offerDetails?.details ??
+              offerDetails,
+            requirement:
+              offerDetails.requirement ??
+              offer.minDeposit ??
+              "See promotion requirements",
+            payout:
+              offerDetails.payout ?? "See terms for payout timeline",
+            expiration:
+              offerDetails.expiration ??
+              (offer.lastChecked
+                ? `Verified ${formatVerificationDate(offer.lastChecked)}`
+                : "Verified 2025"),
+          },
+          cta: {
+            label: offer?.cta?.label ?? "Sign Up",
+            href:
+              offer?.promoLink ??
+              offer?.cta?.href ??
+              offer?.referralUrl ??
+              "#",
+          },
+        };
+      }),
+    [brokerData]
   );
 
   const summary = useMemo(() => {
@@ -361,11 +418,26 @@ export default function OffersPage() {
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {offers.map((offer) => (
-              <article
-                key={offer.id}
-                className="group flex h-full flex-col justify-between rounded-3xl border border-white/5 bg-white/5 p-6 text-left shadow-[0_30px_80px_-60px_rgba(16,185,129,0.5)] transition hover:border-emerald-400/60 hover:shadow-emerald-500/30"
-              >
+            {brokersLoading && (
+              <div className="md:col-span-2 xl:col-span-3">
+                <div className="rounded-3xl border border-white/5 bg-white/5 p-6 text-center text-sm text-slate-300">
+                  Loading verified offers…
+                </div>
+              </div>
+            )}
+            {brokersError && !brokersLoading && (
+              <div className="md:col-span-2 xl:col-span-3">
+                <div className="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-6 text-center text-sm text-rose-200">
+                  We couldn&apos;t refresh the offers right now. Please try again shortly.
+                </div>
+              </div>
+            )}
+            {!brokersLoading && !brokersError &&
+              offers.map((offer) => (
+                <article
+                  key={offer.id}
+                  className="group flex h-full flex-col justify-between rounded-3xl border border-white/5 bg-white/5 p-6 text-left shadow-[0_30px_80px_-60px_rgba(16,185,129,0.5)] transition hover:border-emerald-400/60 hover:shadow-emerald-500/30"
+                >
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -393,10 +465,10 @@ export default function OffersPage() {
                   <div className="rounded-2xl border border-white/10 bg-[#071025] px-4 py-3">
                     <p className="font-semibold text-white">Bonus Details</p>
                     <p className="mt-2 text-sm text-slate-300">
-                      {offer.offer?.value} • {offer.offer?.requirement}
+                      {offer.offerDetails?.value} • {offer.offerDetails?.requirement}
                     </p>
                     <p className="text-xs text-slate-400">
-                      Payout: {offer.offer?.payout} — {offer.offer?.expiration}
+                      Payout: {offer.offerDetails?.payout} — {offer.offerDetails?.expiration}
                     </p>
                   </div>
                   <a
@@ -407,12 +479,18 @@ export default function OffersPage() {
                   >
                     {offer.cta?.label ?? "View Offer"}
                   </a>
+                  <Link
+                    to={`/broker/${offer.slug ?? offer.id}`}
+                    className="inline-flex w-full justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-emerald-300 transition hover:border-emerald-300 hover:text-emerald-200"
+                  >
+                    Full Review
+                  </Link>
                   <p className="text-xs leading-relaxed text-slate-400">
                     {offer.disclaimer}
                   </p>
                 </div>
               </article>
-            ))}
+              ))}
           </div>
         </section>
       </main>

@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import ScoreBadge from "../../components/score/ScoreBadge";
-import brokers from "../../data/brokers.json";
+import useBrokerData from "../../hooks/useBrokerData";
+import useReviewData from "../../hooks/useReviewData";
 
 function computeAverageScore(breakdown = {}) {
   const values = Object.values(breakdown)
@@ -27,10 +28,50 @@ function formatWeight(weight) {
 export default function BrokerDeepDivePage() {
   const { slug } = useParams();
 
+  const {
+    data: brokerData,
+    isLoading: brokersLoading,
+    error: brokerError,
+  } = useBrokerData();
+  const {
+    data: reviewData,
+    isLoading: reviewsLoading,
+    error: reviewError,
+  } = useReviewData();
+
   const broker = useMemo(
-    () => brokers.find((entry) => (entry.slug ?? entry.id) === slug),
-    [slug]
+    () => brokerData.find((entry) => (entry.slug ?? entry.id) === slug),
+    [brokerData, slug]
   );
+
+  const review = useMemo(() => {
+    if (!reviewData.length) {
+      return null;
+    }
+
+    if (broker) {
+      return (
+        reviewData.find(
+          (entry) =>
+            entry.brokerId === broker.id ||
+            entry.slug === (broker.slug ?? broker.id) ||
+            entry.id === `${broker.id}-review`
+        ) ?? null
+      );
+    }
+
+    return (
+      reviewData.find(
+        (entry) =>
+          entry.brokerId === slug ||
+          entry.slug === slug ||
+          entry.id === `${slug}-review`
+      ) ?? null
+    );
+  }, [broker, reviewData, slug]);
+
+  const isLoading = brokersLoading || reviewsLoading;
+  const loadError = brokerError || reviewError;
 
   const averageScore = useMemo(
     () => computeAverageScore(broker?.score?.breakdown ?? {}),
@@ -58,13 +99,14 @@ export default function BrokerDeepDivePage() {
 
   const weightedScore = Math.round(weightedTotal);
   const heroScore = deepDiveEntries.length > 0 ? weightedScore : averageScore;
+  const heroSummary = review?.summary ?? broker?.summary ?? "";
 
   const pageTitle = broker
     ? `${broker.name} Review (2025) – MyFreeStocks Deep-Dive Score™ Analysis`
     : "Broker Review Not Found – MyFreeStocks";
 
-  const metaDescription = broker
-    ? `${broker.summary} Dive into the full MyFreeStock Score™ breakdown, fees, and editorial verdict for ${broker.name}.`
+  const metaDescription = heroSummary
+    ? `${heroSummary} Dive into the full MyFreeStock Score™ breakdown, fees, and editorial verdict for ${broker?.name ?? "this broker"}.`
     : "We couldn't find the broker deep-dive review you were searching for on MyFreeStocks.";
 
   useEffect(() => {
@@ -94,6 +136,35 @@ export default function BrokerDeepDivePage() {
       }
     };
   }, [pageTitle, metaDescription]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#050B1A] text-slate-100">
+        <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 text-center">
+          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">Loading review…</span>
+        </main>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-[#050B1A] text-slate-100">
+        <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 text-center">
+          <Link
+            to="/offers"
+            className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200"
+          >
+            <span aria-hidden>←</span> Back to Offers
+          </Link>
+          <div className="space-y-4 rounded-3xl border border-rose-500/40 bg-rose-500/10 p-10 shadow-[0_30px_80px_-60px_rgba(248,113,113,0.45)]">
+            <h1 className="text-3xl font-semibold text-white">We can't load this review</h1>
+            <p className="text-sm text-rose-100">Please refresh the page or try again later. Our team is refreshing the data feed.</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   if (!broker) {
     return (
@@ -125,16 +196,15 @@ export default function BrokerDeepDivePage() {
   const {
     name,
     logo,
-    summary,
     about,
     bestFor = [],
-    strengths = [],
-    cautions = [],
+    strengths: brokerStrengths = [],
+    cautions: brokerCautions = [],
     currentPromo,
     features = [],
     feesAndMinimums = {},
     prosCons = {},
-    finalVerdict,
+    finalVerdict: brokerFinalVerdict,
     referralUrl,
     offer: offerDetails = {},
   } = broker;
@@ -146,6 +216,17 @@ export default function BrokerDeepDivePage() {
     .filter(Boolean)
     .join(" • ");
 
+  const reviewStrengths =
+    Array.isArray(review?.topStrengths) && review.topStrengths.length > 0
+      ? review.topStrengths
+      : brokerStrengths;
+  const reviewCautions =
+    Array.isArray(review?.cautions) && review.cautions.length > 0
+      ? review.cautions
+      : brokerCautions;
+  const heroPromoText = review?.currentPromo ?? currentPromo ?? derivedPromo;
+  const verdictText = review?.fullText ?? brokerFinalVerdict;
+
   const heroTiles = [
     {
       title: "Best for",
@@ -153,15 +234,15 @@ export default function BrokerDeepDivePage() {
     },
     {
       title: "Top strengths",
-      content: strengths,
+      content: reviewStrengths,
     },
     {
       title: "Cautions",
-      content: cautions,
+      content: reviewCautions,
     },
     {
       title: "Current promo",
-      content: currentPromo ?? derivedPromo,
+      content: heroPromoText,
     },
   ];
 
@@ -194,7 +275,7 @@ export default function BrokerDeepDivePage() {
                 <h1 className="text-4xl font-bold text-white sm:text-5xl">
                   {name} Review (2025)
                 </h1>
-                <p className="max-w-2xl text-base text-slate-300 sm:text-lg">{summary}</p>
+                <p className="max-w-2xl text-base text-slate-300 sm:text-lg">{heroSummary}</p>
               </div>
             </div>
             <div className="flex flex-col items-end gap-3 text-right">
@@ -424,8 +505,8 @@ export default function BrokerDeepDivePage() {
         <section className="mt-12 rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent p-10 shadow-[0_50px_140px_-80px_rgba(16,185,129,0.75)]">
           <div className="space-y-5">
             <h2 className="text-3xl font-semibold text-white">Final Verdict</h2>
-            {finalVerdict && (
-              <p className="text-base text-slate-100">{finalVerdict}</p>
+            {verdictText && (
+              <p className="text-base text-slate-100">{verdictText}</p>
             )}
             <a
               href={referralUrl ?? broker.cta?.href}
@@ -435,6 +516,12 @@ export default function BrokerDeepDivePage() {
             >
               Claim Offer
             </a>
+            <Link
+              to="/offers"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200"
+            >
+              <span aria-hidden>←</span> Back to Offers
+            </Link>
           </div>
         </section>
       </main>
