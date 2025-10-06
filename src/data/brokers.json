@@ -1,6 +1,7 @@
 [
   {
     "id": "webull",
+    "slug": "webull",
     "name": "Webull",
     "headline": "Earn up to 12 free stocks worth as much as $30,600 when you deposit $100",
     "summary": "Webull leads our rankings for self-directed traders with aggressive equity bonuses and a professional-grade mobile and desktop platform.",
@@ -20,6 +21,56 @@
       "Paper trading and in-app trading journal"
     ],
     "idealFor": ["Active traders", "Mobile-first investors"],
+    "logo": "https://logo.clearbit.com/webull.com",
+    "bestFor": ["Active options traders", "DIY investors who crave analytics"],
+    "strengths": [
+      "Institutional-grade charting across mobile and desktop",
+      "Free Level 2 quotes and real-time market data packages",
+      "Hybrid cash management with 5.0% APY sweep"
+    ],
+    "cautions": [
+      "No access to mutual funds, bonds, or futures",
+      "Learning curve for brand-new investors",
+      "Phone support limited to callbacks"
+    ],
+    "currentPromo": "Earn up to 12 free stocks (valued $36 – $30,600) when you deposit $100 within 10 days.",
+    "about": "Webull is a technology-first brokerage built for active investors who value sleek execution tools, low costs, and constant market access. The platform pairs customizable workstations with powerful mobile charting, while still keeping trading commissions at zero.",
+    "features": [
+      {
+        "name": "Advanced Charting Suite",
+        "description": "Multi-chart layouts, 50+ technical indicators, and synchronized watchlists across every device."
+      },
+      {
+        "name": "Paper Trading Sandbox",
+        "description": "Simulate strategies with $1M in virtual funds and export performance to share with mentors or communities."
+      },
+      {
+        "name": "Extended-Hours Sessions",
+        "description": "Trade from 4 a.m. to 8 p.m. ET to react to global catalysts without paying additional fees."
+      },
+      {
+        "name": "Cash Management",
+        "description": "FDIC-insured sweep accounts with up to 5.0% APY and instant transfers back into trading balances."
+      }
+    ],
+    "feesAndMinimums": {
+      "managementFee": "$0 trading commissions on stocks, ETFs, and options",
+      "productFees": "Regulatory and clearing fees (SEC/TAF) passed through at cost",
+      "accountMinimum": "$0 minimum to open or maintain",
+      "accountTypes": "Taxable brokerage, Traditional & Roth IRA, Rollover IRA"
+    },
+    "prosCons": {
+      "pros": [
+        "Feature-rich platform rivals pro desktop terminals",
+        "Aggressive promotional stock rewards for new clients",
+        "Robust options analytics including Greeks and strategy builder"
+      ],
+      "cons": [
+        "No mutual funds or fixed-income desk",
+        "Limited financial planning guidance",
+        "Customer support relies heavily on chat and tickets"
+      ]
+    },
     "score": {
       "vertical": "broker",
       "breakdown": {
@@ -27,12 +78,22 @@
         "features": 88,
         "platform": 91,
         "support": 76
+      },
+      "deepDive": {
+        "transparency": { "weight": 0.2, "score": 86 },
+        "cost": { "weight": 0.2, "score": 94 },
+        "features": { "weight": 0.25, "score": 91 },
+        "support": { "weight": 0.2, "score": 76 },
+        "returns": { "weight": 0.15, "score": 82 }
       }
     },
+    "finalVerdict": "Webull remains a compelling pick for data-driven traders who want pro-level analytics without paying platform fees. If you can handle a more technical interface, the bonus stock offer and robust options desk make Webull difficult to beat.",
+    "referralUrl": "https://www.webull.com/",
     "disclaimer": "Promotional share values fluctuate with market prices. New U.S. customers only; terms and conditions from Webull Financial LLC apply."
   },
   {
     "id": "robinhood",
+    "slug": "robinhood",
     "name": "Robinhood",
     "headline": "Get up to $200 in free stock slices when you open and fund a brokerage account",
     "summary": "Robinhood balances low costs with user-friendly automation, making it a popular entry point for new investors seeking fractional share bonuses.",
@@ -52,6 +113,56 @@
       "Cash sweep with up to 5.0% APY for Gold members"
     ],
     "idealFor": ["Beginner investors", "DIY retirement savers"],
+    "logo": "https://logo.clearbit.com/robinhood.com",
+    "bestFor": ["First-time investors", "Goal-based savers who value automation"],
+    "strengths": [
+      "Simple mobile-first interface with zero commissions",
+      "Recurring investments and automated dividend reinvestment",
+      "Access to IPO allocations and 24-hour market coverage"
+    ],
+    "cautions": [
+      "Advanced order types still limited",
+      "Customer support wait times can spike during volatility",
+      "Cash sweep APY requires paid Gold membership"
+    ],
+    "currentPromo": "Deposit $50 to unlock up to $200 in randomized stock rewards within five trading days.",
+    "about": "Robinhood popularized commission-free trading by stripping away complexity and focusing on a clean, mobile-first investing experience. Its automation tools and educational nudges help new investors build habits without feeling overwhelmed.",
+    "features": [
+      {
+        "name": "Fractional Shares",
+        "description": "Invest in thousands of stocks and ETFs with as little as $1, keeping portfolios diversified."
+      },
+      {
+        "name": "Recurring Investments",
+        "description": "Schedule automated deposits into chosen securities weekly, biweekly, or monthly."
+      },
+      {
+        "name": "24-Hour Market",
+        "description": "Trade select large-cap stocks almost around the clock to react to global news."
+      },
+      {
+        "name": "Gold Research",
+        "description": "Premium Morningstar reports, Level II data, and 5.0% cash sweep yield for Gold subscribers."
+      }
+    ],
+    "feesAndMinimums": {
+      "managementFee": "$0 trading commissions across stocks, ETFs, and options",
+      "productFees": "$5 monthly for Robinhood Gold (optional)",
+      "accountMinimum": "$0 minimum balance required",
+      "accountTypes": "Taxable brokerage, Traditional & Roth IRA, SEP IRA"
+    },
+    "prosCons": {
+      "pros": [
+        "Onboarding takes minutes with instant account approval",
+        "Helpful automation like recurring investments and dividend reinvestment",
+        "Crypto, options, and IPO access inside a single app"
+      ],
+      "cons": [
+        "Gold membership needed for highest APY and research",
+        "Limited advanced charting and analytics",
+        "Customer service improving but still inconsistent"
+      ]
+    },
     "score": {
       "vertical": "broker",
       "breakdown": {
@@ -59,12 +170,22 @@
         "features": 82,
         "platform": 85,
         "support": 72
+      },
+      "deepDive": {
+        "transparency": { "weight": 0.22, "score": 84 },
+        "cost": { "weight": 0.2, "score": 90 },
+        "features": { "weight": 0.23, "score": 84 },
+        "support": { "weight": 0.2, "score": 72 },
+        "returns": { "weight": 0.15, "score": 78 }
       }
     },
+    "finalVerdict": "Robinhood is the most approachable path to start investing thanks to automation, fractional shares, and a slick app. Experienced traders will still crave deeper analytics, but for everyday savers the current promo and habit-building workflows are hard to ignore.",
+    "referralUrl": "https://robinhood.com/",
     "disclaimer": "Stock slice values are randomized at the time of distribution. Check Robinhood's latest disclosures for eligibility limitations and tax reporting guidance."
   },
   {
     "id": "fidelity",
+    "slug": "fidelity",
     "name": "Fidelity",
     "headline": "Earn up to $100 cash bonus with qualifying deposits into a new Fidelity brokerage account",
     "summary": "Fidelity pairs a cash welcome bonus with industry-leading research, zero trade commissions, and award-winning customer support.",
@@ -84,6 +205,56 @@
       "24/7 phone, chat, and in-branch support nationwide"
     ],
     "idealFor": ["Long-term investors", "Retirement planning"],
+    "logo": "https://logo.clearbit.com/fidelity.com",
+    "bestFor": ["Long-term wealth builders", "Retirement-focused households"],
+    "strengths": [
+      "Institutional-grade research from Fidelity and third parties",
+      "Extensive lineup of zero-expense-ratio index funds",
+      "Nationwide in-person support and 24/7 service"
+    ],
+    "cautions": [
+      "Active Trader Pro can feel overwhelming",
+      "International trading requires separate applications",
+      "Cash sweep yield lags some fintech rivals"
+    ],
+    "currentPromo": "Earn up to $100 in cash credits when you deposit at least $50 within the promo window.",
+    "about": "Fidelity is a full-service brokerage that marries rock-solid customer support with low-cost investing tools. Whether you trade occasionally or manage complex retirement strategies, Fidelity's mix of research, planning, and cash management covers every life stage.",
+    "features": [
+      {
+        "name": "Active Trader Pro",
+        "description": "Desktop trading workstation with streaming quotes, ladders, and conditional orders."
+      },
+      {
+        "name": "Retirement Roadmap",
+        "description": "Interactive planning hub that models income needs, Social Security, and healthcare costs."
+      },
+      {
+        "name": "Zero Expense Ratio Funds",
+        "description": "Four index funds with 0.00% expense ratios for core equity exposure."
+      },
+      {
+        "name": "Cash Management",
+        "description": "FDIC-insured sweep program with ATM reimbursements and bill pay integration."
+      }
+    ],
+    "feesAndMinimums": {
+      "managementFee": "$0 commissions plus free Fidelity ZERO index funds",
+      "productFees": "0.00% advisory fee on Fidelity Go up to $25K (0.35% above)",
+      "accountMinimum": "$0 for standard brokerage; $10 for Fidelity Go",
+      "accountTypes": "Individual & joint taxable, Traditional/Roth/SEP IRA, 401(k) rollovers, HSAs"
+    },
+    "prosCons": {
+      "pros": [
+        "Research depth rivals institutional desks",
+        "Industry-leading customer satisfaction and NPS",
+        "Comprehensive retirement and college planning resources"
+      ],
+      "cons": [
+        "Advanced tools have steeper learning curve",
+        "International trading access is limited",
+        "Cash sweep yields trail high-yield fintech accounts"
+      ]
+    },
     "score": {
       "vertical": "broker",
       "breakdown": {
@@ -91,12 +262,22 @@
         "features": 89,
         "platform": 87,
         "support": 91
+      },
+      "deepDive": {
+        "transparency": { "weight": 0.22, "score": 94 },
+        "cost": { "weight": 0.18, "score": 96 },
+        "features": { "weight": 0.25, "score": 92 },
+        "support": { "weight": 0.2, "score": 95 },
+        "returns": { "weight": 0.15, "score": 88 }
       }
     },
+    "finalVerdict": "Fidelity is the gold-standard pick for investors who want deep planning support with low fees. The welcome bonus is modest, but the long-term value comes from best-in-class research, customer care, and a comprehensive product shelf.",
+    "referralUrl": "https://www.fidelity.com/",
     "disclaimer": "Fidelity bonuses require maintaining qualifying assets for 90 days. Consult Fidelity's bonus terms for additional restrictions and taxable implications."
   },
   {
     "id": "sofi",
+    "slug": "sofi",
     "name": "SoFi Invest",
     "headline": "Get up to $1,000 in stock when you transfer or deposit funds into SoFi Active Invest",
     "summary": "SoFi Invest rewards new clients with a tiered stock bonus and bundles access to financial planners, cash management, and crypto trading in one app.",
@@ -116,6 +297,56 @@
       "Integrated banking with up to 4.60% APY savings"
     ],
     "idealFor": ["Hybrid investors", "Holistic financial planning"],
+    "logo": "https://logo.clearbit.com/sofi.com",
+    "bestFor": ["Hands-off investors", "Members seeking bundled banking and investing"],
+    "strengths": [
+      "Automated portfolios with zero management fees",
+      "Access to CFP® professionals for goal planning",
+      "Integrated ecosystem spanning loans, banking, and investing"
+    ],
+    "cautions": [
+      "Limited advanced trading features",
+      "ETF lineup leans heavily on proprietary funds",
+      "Phone support restricted to business hours"
+    ],
+    "currentPromo": "Transfer or deposit $100–$100,000 to receive $25 – $1,000 in bonus stock.",
+    "about": "SoFi Invest packages automated portfolios, active investing, and crypto trading into a single, member-centric platform. The app ties seamlessly into SoFi's banking and lending products, rewarding loyal customers with rate discounts and financial coaching.",
+    "features": [
+      {
+        "name": "Automated Investing",
+        "description": "Goal-based portfolios with automatic rebalancing and dividend reinvestment at no advisory fee."
+      },
+      {
+        "name": "Member Financial Planning",
+        "description": "Complimentary sessions with CFP® professionals to map milestones like weddings, college, and retirement."
+      },
+      {
+        "name": "Integrated Banking",
+        "description": "High-yield savings up to 4.60% APY plus direct deposit perks that flow into investing goals."
+      },
+      {
+        "name": "Active & Crypto Trading",
+        "description": "Buy individual stocks, ETFs, and select cryptocurrencies inside the same streamlined app."
+      }
+    ],
+    "feesAndMinimums": {
+      "managementFee": "0.00% advisory fee on automated portfolios",
+      "productFees": "0.19% – 0.29% blended expense ratios on SoFi ETFs",
+      "accountMinimum": "$0 for automated investing; $10 for active investing",
+      "accountTypes": "Taxable brokerage, Traditional & Roth IRA, SEP IRA"
+    },
+    "prosCons": {
+      "pros": [
+        "Holistic money management inside one membership",
+        "Access to human advisors without extra cost",
+        "Strong cash bonuses for high deposit tiers"
+      ],
+      "cons": [
+        "Trading tools trail specialist brokerages",
+        "ETF lineup leans on proprietary strategies",
+        "Crypto offering limited versus dedicated exchanges"
+      ]
+    },
     "score": {
       "vertical": "broker",
       "breakdown": {
@@ -123,8 +354,17 @@
         "features": 80,
         "platform": 83,
         "support": 78
+      },
+      "deepDive": {
+        "transparency": { "weight": 0.2, "score": 82 },
+        "cost": { "weight": 0.2, "score": 88 },
+        "features": { "weight": 0.23, "score": 84 },
+        "support": { "weight": 0.22, "score": 80 },
+        "returns": { "weight": 0.15, "score": 76 }
       }
     },
+    "finalVerdict": "SoFi Invest shines for members who want automated portfolios, human guidance, and high-yield banking under one login. It is less compelling for pro traders, but the all-in-one ecosystem and upfront stock bonus make it a standout for long-term planners.",
+    "referralUrl": "https://www.sofi.com/invest/",
     "disclaimer": "Bonuses are paid in SoFi stock bits and may be rescinded if account balances fall below tier minimums. Review SoFi's promotional terms for the latest criteria."
   }
 ]

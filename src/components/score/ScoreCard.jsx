@@ -1,5 +1,6 @@
 // src/components/score/ScoreCard.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import ScoreBadge from "./ScoreBadge";
 
 /**
@@ -20,6 +21,7 @@ export default function ScoreCard({
   scoreOverride,
   variant = "light",
   className = "",
+  slug,
 }) {
   // Basic weighted display pulled from same philosophy as score.js (already normalized)
   const metricLabels = {
@@ -82,8 +84,12 @@ export default function ScoreCard({
             "mt-4 text-sm text-gray-600 dark:text-gray-400",
         };
 
-  return (
-    <div className={variantStyles.container}>
+  const containerClassName = `${variantStyles.container} ${
+    slug ? "cursor-pointer" : ""
+  }`;
+
+  const cardContent = (
+    <div className={containerClassName}>
       <div className="mb-4 flex items-center justify-between">
         <h3 className={variantStyles.heading}>{name}</h3>
         <ScoreBadge score={Math.round(score)} />
@@ -109,6 +115,20 @@ export default function ScoreCard({
         glance.
       </div>
     </div>
+  );
+
+  if (!slug) {
+    return cardContent;
+  }
+
+  return (
+    <Link
+      to={`/broker/${slug}`}
+      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+      aria-label={`View the MyFreeStock deep-dive review for ${name}`}
+    >
+      {cardContent}
+    </Link>
   );
 }
 

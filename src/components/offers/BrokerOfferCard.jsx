@@ -11,6 +11,8 @@ function normaliseMetrics(breakdown = {}) {
 
 export default function BrokerOfferCard({ offer }) {
   const {
+    id,
+    slug,
     name,
     headline,
     summary,
@@ -152,6 +154,7 @@ export default function BrokerOfferCard({ offer }) {
             subMetrics={breakdown}
             type="broker"
             scoreOverride={displayScore}
+            slug={slug ?? id}
           />
           {idealFor.length > 0 && (
             <div className="rounded-2xl border border-gray-200 bg-accent/60 p-4 text-sm text-gray-700">
