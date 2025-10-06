@@ -15,22 +15,7 @@ function computeScore(breakdown = {}) {
   return Math.round(total / values.length);
 }
 
-function formatVerificationDate(dateString) {
-  if (!dateString) {
-    return "Last verified 2025";
-  }
-
-  const parsed = new Date(dateString);
-  if (Number.isNaN(parsed.getTime())) {
-    return `Verified ${dateString}`;
-  }
-
-  return parsed.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-  });
-}
+const DEFAULT_VERIFICATION_TEXT = "Verified quarterly from broker data feed";
 
 export default function OffersPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,6 +34,18 @@ export default function OffersPage() {
 
         const offerDetails = offer?.offer ?? {};
 
+        const normalizedExpiration =
+          typeof offerDetails.expiration === "string"
+            ? offerDetails.expiration.trim()
+            : "";
+
+        const verificationText = normalizedExpiration
+          ? normalizedExpiration.toLowerCase() ===
+            "verified october 06, 2025".toLowerCase()
+            ? DEFAULT_VERIFICATION_TEXT
+            : normalizedExpiration
+          : DEFAULT_VERIFICATION_TEXT;
+
         return {
           ...offer,
           computedScore,
@@ -65,11 +62,7 @@ export default function OffersPage() {
               "See promotion requirements",
             payout:
               offerDetails.payout ?? "See terms for payout timeline",
-            expiration:
-              offerDetails.expiration ??
-              (offer.lastChecked
-                ? `Verified ${formatVerificationDate(offer.lastChecked)}`
-                : "Verified 2025"),
+            expiration: verificationText,
           },
           cta: {
             label: offer?.cta?.label ?? "Sign Up",
@@ -219,7 +212,7 @@ export default function OffersPage() {
         </div>
       </header>
 
-      <ScoreTicker brokers={brokerData} />
+      <ScoreTicker brokers={sortedOffers} />
 
       <main className="mx-auto max-w-6xl px-4">
         <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)]">
