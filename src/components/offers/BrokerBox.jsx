@@ -131,9 +131,27 @@ export default function BrokerBox({ offer, isTopPick = false }) {
     { label: "Verification", value: offerDetails.expiration ?? "Verified 2025" },
   ];
 
+  const rawOfferText =
+    (typeof offer?.currentPromo === "string" && offer.currentPromo.trim()) ||
+    (typeof offerDetails?.value === "string" && offerDetails.value.trim()) ||
+    (typeof offerDetails?.headline === "string" && offerDetails.headline.trim()) ||
+    (typeof offerDetails?.summary === "string" && offerDetails.summary.trim()) ||
+    "";
+
+  const normalizedOfferText = rawOfferText.trim();
+  const hasStrongOffer = normalizedOfferText.length > 0;
+
+  const offerHighlightClass = hasStrongOffer
+    ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300"
+    : "bg-slate-100/10 text-slate-300 dark:text-slate-200/70";
+
+  const offerHighlightText = hasStrongOffer
+    ? normalizedOfferText
+    : "No current offer";
+
   return (
     <article
-      className={`relative flex h-full flex-col justify-between gap-4 rounded-3xl border p-6 text-left transition-all duration-200 hover:scale-[1.02] md:p-8 ${
+      className={`relative flex h-full flex-col justify-between gap-6 rounded-3xl border p-6 text-left transition-all duration-200 hover:scale-[1.02] md:p-8 ${
         isTopPick
           ? "border-emerald-400/70 bg-gradient-to-br from-emerald-500/20 via-emerald-500/10 to-transparent shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/40"
           : "border-white/10 bg-white/5 shadow-[0_30px_80px_-60px_rgba(16,185,129,0.35)] hover:border-emerald-400/60 hover:shadow-lg"
@@ -146,28 +164,45 @@ export default function BrokerBox({ offer, isTopPick = false }) {
         </span>
       )}
 
-      <ScoreBadge
-        score={computedScore}
-        className="absolute right-6 top-6 shadow-lg shadow-emerald-500/20"
-      />
-
-      <div className="flex flex-col gap-4 pr-0">
-        <div className="flex items-start gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
-            <img
-              src={logoSrc}
-              alt={`${name} logo`}
-              className="h-12 w-12 object-contain"
-              loading="lazy"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-              {categoryIcon}
-              <span>{categoryLabel}</span>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
+              <img
+                src={logoSrc}
+                alt={`${name} logo`}
+                className="h-12 w-12 object-contain"
+                loading="lazy"
+              />
             </div>
-            <h3 className="text-2xl font-bold text-white">{name}</h3>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                {categoryIcon}
+                <span>{categoryLabel}</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white">{name}</h3>
+              <div className="flex flex-col gap-1">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
+                  Current Offer
+                </span>
+                <div
+                  className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}
+                >
+                  {offerHighlightText}
+                </div>
+              </div>
+            </div>
           </div>
+          <Link
+            to={`/offers/${slug ?? id}`}
+            className="group inline-flex shrink-0 self-start rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            aria-label={`${name} detailed review`}
+          >
+            <ScoreBadge
+              score={computedScore}
+              className="!p-1.5 sm:!p-2 inline-flex items-center !rounded-md shadow-lg shadow-emerald-500/20 transition-transform duration-200 hover:scale-105 hover:shadow-md"
+            />
+          </Link>
         </div>
 
         {headline && <p className="text-sm font-semibold text-emerald-200">{headline}</p>}
