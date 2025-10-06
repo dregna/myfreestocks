@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
-import Offers from "./pages/offers.jsx";
+import Offers from "./pages/Offers.jsx";
 import BrokerDeepDivePage from "./pages/broker/[slug].jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
