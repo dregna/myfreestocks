@@ -164,139 +164,114 @@ export default function BrokerBox({ offer, isTopPick = false }) {
         </span>
       )}
 
-{/* --- START CLEAN MERGED BLOCK --- */}
+      <Link
+        to={`/offers/${slug ?? id}`}
+        className="absolute right-6 top-6 inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
+        aria-label={`Read the ${name} broker review`}
+      >
+        <ScoreBadge score={computedScore} className="shadow-lg shadow-emerald-500/20" />
+      </Link>
 
-<Link
-  to={`/offers/${slug ?? id}`}
-  className="absolute right-6 top-6 inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
-  aria-label={`Read the ${name} broker review`}
->
-  <ScoreBadge
-    score={computedScore}
-    className="shadow-lg shadow-emerald-500/20"
-  />
-</Link>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
+              <img
+                src={logoSrc}
+                alt={`${name} logo`}
+                className="h-12 w-12 object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                {categoryIcon}
+                <span>{categoryLabel}</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white">{name}</h3>
 
-<div className="flex flex-col gap-6">
-  <div className="flex flex-wrap items-start justify-between gap-4">
-    <div className="flex items-start gap-4">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
-        <img
-          src={logoSrc}
-          alt={`${name} logo`}
-          className="h-12 w-12 object-contain"
-          loading="lazy"
-        />
-      </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-          {categoryIcon}
-          <span>{categoryLabel}</span>
-        </div>
-        <h3 className="text-2xl font-bold text-white">{name}</h3>
-
-        {/* Offer Highlight */}
-        <div className="flex flex-col gap-1">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
-            Current Offer
-          </span>
-          <div
-            className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}
-          >
-            {offerHighlightText}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-{/* --- END CLEAN MERGED BLOCK --- */}
-
+              <div className="flex flex-col gap-1">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
+                  Current Offer
+                </span>
+                <div className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}>
+                  {offerHighlightText}
+                </div>
+              </div>
             </div>
           </div>
-          <Link
-            to={`/offers/${slug ?? id}`}
-            className="group inline-flex shrink-0 self-start rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-            aria-label={`${name} detailed review`}
-          >
-            <ScoreBadge
-              score={computedScore}
-              className="!p-1.5 sm:!p-2 inline-flex items-center !rounded-md shadow-lg shadow-emerald-500/20 transition-transform duration-200 hover:scale-105 hover:shadow-md"
-            />
-          </Link>
         </div>
 
         {headline && <p className="text-sm font-semibold text-emerald-200">{headline}</p>}
         {summary && <p className="text-sm text-slate-300">{summary}</p>}
-      </div>
 
-      <div className="mt-auto space-y-4">
-        <dl className="grid grid-cols-1 gap-3 text-sm text-slate-200 sm:grid-cols-2">
-          {detailItems.map((item) => (
-            <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-3">
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                {item.label}
-              </dt>
-              <dd className="mt-1 text-sm font-semibold text-white">{item.value}</dd>
+        <div className="mt-auto space-y-4">
+          <dl className="grid grid-cols-1 gap-3 text-sm text-slate-200 sm:grid-cols-2">
+            {detailItems.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  {item.label}
+                </dt>
+                <dd className="mt-1 text-sm font-semibold text-white">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          {highlights.length > 0 && (
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                Highlights
+              </p>
+              <ul className="space-y-2 text-sm text-slate-200">
+                {highlights.slice(0, 3).map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 inline-flex h-1.5 w-1.5 flex-none rounded-full bg-emerald-400" aria-hidden />
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
-        </dl>
+          )}
 
-        {highlights.length > 0 && (
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-              Highlights
-            </p>
-            <ul className="space-y-2 text-sm text-slate-200">
-              {highlights.slice(0, 3).map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-1 inline-flex h-1.5 w-1.5 flex-none rounded-full bg-emerald-400" aria-hidden />
-                  <span className="leading-snug">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {idealFor.length > 0 && (
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-              Ideal For
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {idealFor.map((persona) => (
-                <span
-                  key={persona}
-                  className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200"
-                >
-                  {persona}
-                </span>
-              ))}
+          {idealFor.length > 0 && (
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+                Ideal For
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {idealFor.map((persona) => (
+                  <span
+                    key={persona}
+                    className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200"
+                  >
+                    {persona}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-          <a
-            href={cta?.href ?? "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex flex-1 items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-          >
-            Sign Up Now
-          </a>
-          <Link
-            to={`/broker/${slug ?? id}`}
-            className="inline-flex flex-1 items-center justify-center rounded-xl border border-emerald-400/60 px-4 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-          >
-            Read Review
-          </Link>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <a
+              href={cta?.href ?? "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-1 items-center justify-center rounded-xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            >
+              Sign Up Now
+            </a>
+            <Link
+              to={`/broker/${slug ?? id}`}
+              className="inline-flex flex-1 items-center justify-center rounded-xl border border-emerald-400/60 px-4 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            >
+              Read Review
+            </Link>
+          </div>
+
+          {disclaimer && (
+            <p className="text-xs leading-relaxed text-slate-400">{disclaimer}</p>
+          )}
         </div>
-
-        {disclaimer && (
-          <p className="text-xs leading-relaxed text-slate-400">{disclaimer}</p>
-        )}
       </div>
     </article>
   );
