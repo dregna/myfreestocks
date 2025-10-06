@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import ScoreCard from "../components/score/ScoreCard";
 import ScoreBadge from "../components/score/ScoreBadge";
 import ScoreTicker from "../components/score/ScoreTicker";
+import BrokerBox from "../components/offers/BrokerBox";
 import useBrokerData from "../hooks/useBrokerData";
 
 function computeScore(breakdown = {}) {
@@ -84,27 +84,31 @@ export default function OffersPage() {
     [brokerData]
   );
 
-  const summary = useMemo(() => {
+  const sortedOffers = useMemo(() => {
     if (offers.length === 0) {
+      return [];
+    }
+
+    return [...offers].sort(
+      (a, b) => (b.computedScore ?? 0) - (a.computedScore ?? 0)
+    );
+  }, [offers]);
+
+  const summary = useMemo(() => {
+    if (sortedOffers.length === 0) {
       return { averageScore: 0, topOffer: null };
     }
 
-    const totalScore = offers.reduce(
+    const totalScore = sortedOffers.reduce(
       (sum, current) => sum + (current.computedScore ?? 0),
       0
     );
-    const topOffer = offers.reduce((best, current) => {
-      if (!best) return current;
-      return (current.computedScore ?? 0) > (best.computedScore ?? 0)
-        ? current
-        : best;
-    }, null);
 
     return {
-      averageScore: Math.round(totalScore / offers.length),
-      topOffer,
+      averageScore: Math.round(totalScore / sortedOffers.length),
+      topOffer: sortedOffers[0] ?? null,
     };
-  }, [offers]);
+  }, [sortedOffers]);
 
   const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
   const handleCloseMenu = () => setIsMenuOpen(false);
@@ -420,7 +424,7 @@ export default function OffersPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 lg:grid-cols-3">
             {brokersLoading && (
               <div className="md:col-span-2 xl:col-span-3">
                 <div className="rounded-3xl border border-white/5 bg-white/5 p-6 text-center text-sm text-slate-300">
@@ -436,63 +440,12 @@ export default function OffersPage() {
               </div>
             )}
             {!brokersLoading && !brokersError &&
-              offers.map((offer) => (
-                <article
-                  key={offer.id}
-                  className="group flex h-full flex-col justify-between rounded-3xl border border-white/5 bg-white/5 p-6 text-left shadow-[0_30px_80px_-60px_rgba(16,185,129,0.5)] transition hover:border-emerald-400/60 hover:shadow-emerald-500/30"
-                >
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white">{offer.name}</h3>
-                      <p className="mt-2 text-sm text-slate-300">{offer.headline}</p>
-                    </div>
-                    <ScoreBadge score={offer.computedScore} />
-                  </div>
-                  <p className="text-sm text-slate-400">{offer.summary}</p>
-                </div>
-
-                <div className="mt-6">
-                  <ScoreCard
-                    name={`${offer.name} Score`}
-                    subMetrics={offer.score?.breakdown ?? {}}
-                    type="broker"
-                    scoreOverride={offer.computedScore}
-                    variant="dark"
-                    className="bg-[#0A152E]/60"
-                    slug={offer.slug ?? offer.id}
-                  />
-                </div>
-
-                <div className="mt-6 space-y-3 text-sm text-slate-300">
-                  <div className="rounded-2xl border border-white/10 bg-[#071025] px-4 py-3">
-                    <p className="font-semibold text-white">Bonus Details</p>
-                    <p className="mt-2 text-sm text-slate-300">
-                      {offer.offerDetails?.value} • {offer.offerDetails?.requirement}
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Payout: {offer.offerDetails?.payout} — {offer.offerDetails?.expiration}
-                    </p>
-                  </div>
-                  <a
-                    href={offer.cta?.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-                  >
-                    {offer.cta?.label ?? "View Offer"}
-                  </a>
-                  <Link
-                    to={`/broker/${offer.slug ?? offer.id}`}
-                    className="inline-flex w-full justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-emerald-300 transition hover:border-emerald-300 hover:text-emerald-200"
-                  >
-                    Full Review
-                  </Link>
-                  <p className="text-xs leading-relaxed text-slate-400">
-                    {offer.disclaimer}
-                  </p>
-                </div>
-              </article>
+              sortedOffers.map((offer, index) => (
+                <BrokerBox
+                  key={offer.id ?? offer.slug ?? index}
+                  offer={offer}
+                  isTopPick={index === 0}
+                />
               ))}
           </div>
         </section>
