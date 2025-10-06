@@ -166,9 +166,9 @@ export default function BrokerBox({ offer, isTopPick = false }) {
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-1 items-center gap-3 sm:gap-4">
-              <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-white/90 shadow-inner">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
                 <img
                   src={logoSrc}
                   alt={`${name} logo`}
@@ -176,12 +176,12 @@ export default function BrokerBox({ offer, isTopPick = false }) {
                   loading="lazy"
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold text-white">{name}</h3>
+              <div className="flex flex-col">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
                   {categoryIcon}
                   <span>{categoryLabel}</span>
                 </div>
+                <h3 className="text-2xl font-bold text-white">{name}</h3>
               </div>
             </div>
 
