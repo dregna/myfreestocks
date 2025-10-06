@@ -111,7 +111,6 @@ export default function BrokerBox({ offer, isTopPick = false }) {
     cta,
     offerDetails = {},
     highlights = [],
-    idealFor = [],
     computedScore,
     category,
     disclaimer,
@@ -128,7 +127,10 @@ export default function BrokerBox({ offer, isTopPick = false }) {
       value: offerDetails.requirement ?? "Check offer terms",
     },
     { label: "Payout", value: offerDetails.payout ?? "Varies by broker" },
-    { label: "Verification", value: offerDetails.expiration ?? "Verified 2025" },
+    {
+      label: "Verification",
+      value: offerDetails.expiration ?? "Verified quarterly from broker data feed",
+    },
   ];
 
   const rawOfferText =
@@ -166,35 +168,34 @@ export default function BrokerBox({ offer, isTopPick = false }) {
 
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
+          <div className="flex items-start justify-between mb-4 gap-3 flex-wrap">
+            <div className="flex items-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/90 shadow-inner">
                 <img
                   src={logoSrc}
                   alt={`${name} logo`}
-                  className="h-12 w-12 object-contain"
+                  className="h-10 w-10 object-contain"
                   loading="lazy"
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                  {categoryIcon}
-                  <span>{categoryLabel}</span>
-                </div>
+              <div>
                 <h3 className="text-2xl font-bold text-white">{name}</h3>
+                <div className="flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                  {categoryIcon} <span>{categoryLabel}</span>
+                </div>
               </div>
             </div>
 
             <Link
               to={`/offers/${slug ?? id}`}
-              className="inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
+              className="inline-flex items-center rounded-md px-3 py-1.5 sm:px-4 sm:py-2 bg-emerald-700/20 hover:bg-emerald-700/30 transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               aria-label={`Read the ${name} broker review`}
             >
-              <ScoreBadge score={computedScore} className="shadow-lg shadow-emerald-500/20" />
+              <ScoreBadge score={computedScore} className="text-xl font-bold shadow-lg shadow-emerald-500/20" />
             </Link>
           </div>
 
-          <div className="flex flex-col gap-1">
+          <div className="mt-3 flex flex-col gap-1">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
               Current Offer
             </span>
@@ -232,24 +233,6 @@ export default function BrokerBox({ offer, isTopPick = false }) {
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-
-          {idealFor.length > 0 && (
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                Ideal For
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {idealFor.map((persona) => (
-                  <span
-                    key={persona}
-                    className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200"
-                  >
-                    {persona}
-                  </span>
-                ))}
-              </div>
             </div>
           )}
 

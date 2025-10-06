@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import fallbackBrokerData from "../../data/brokers.json";
 
 function formatPercent(change, prev) {
   if (!Number.isFinite(change) || !Number.isFinite(prev) || prev === 0) {
@@ -18,9 +19,31 @@ function formatPercent(change, prev) {
 
 export default function ScoreTicker({ brokers = [] }) {
   const [isPaused, setIsPaused] = useState(false);
+  const [tickerBrokers, setTickerBrokers] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    function fetchBrokerScores() {
+      if (!Array.isArray(brokers) || brokers.length === 0) {
+        setTickerBrokers(
+          Array.isArray(fallbackBrokerData) ? fallbackBrokerData : []
+        );
+        setLoaded(true);
+      }
+    }
+
+    fetchBrokerScores();
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(brokers) && brokers.length > 0) {
+      setTickerBrokers(brokers);
+      setLoaded(true);
+    }
+  }, [brokers]);
 
   const items = useMemo(() => {
-    return brokers
+    return tickerBrokers
       .filter((broker) => broker?.score)
       .map((broker) => {
         const history = Array.isArray(broker.scoreHistory)
@@ -61,7 +84,7 @@ export default function ScoreTicker({ brokers = [] }) {
         };
       })
       .filter(Boolean);
-  }, [brokers]);
+  }, [tickerBrokers]);
 
   if (items.length === 0) {
     return null;
@@ -149,13 +172,13 @@ export default function ScoreTicker({ brokers = [] }) {
             <span className="tracking-[0.2em] text-emerald-100 sm:tracking-[0.35em]">Live</span>
           </span>
         </div>
-        <div className="group/ticker relative hidden flex-1 overflow-hidden sm:flex">
+        <div className="group/ticker relative flex-1 overflow-x-auto sm:overflow-hidden">
           <div
-            className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#071026] via-[#071026]/70 to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 hidden w-12 bg-gradient-to-r from-[#071026] via-[#071026]/70 to-transparent sm:block"
             aria-hidden
           />
           <div
-            className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#071026] via-[#071026]/70 to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-12 bg-gradient-to-l from-[#071026] via-[#071026]/70 to-transparent sm:block"
             aria-hidden
           />
           <div
@@ -170,18 +193,14 @@ export default function ScoreTicker({ brokers = [] }) {
             tabIndex={0}
             aria-label="Live MyFreeStock Score updates"
           >
-            <div className={tickerClassNames}>
-              {renderItems("a")}
-              {renderItems("b")}
+            <div className={`transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}>
+              <div className={tickerClassNames}>
+                {renderItems("a")}
+                {renderItems("b")}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="px-4 pb-3 sm:hidden">
-        <p className="rounded-2xl border border-emerald-400/10 bg-white/5 px-4 py-2 text-[0.7rem] text-emerald-200">
-          Scores refresh weekly from broker data feeds.
-          {/* TODO: Connect to live score streaming API when available */}
-        </p>
       </div>
     </section>
   );
