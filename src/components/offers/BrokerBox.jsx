@@ -111,7 +111,6 @@ export default function BrokerBox({ offer, isTopPick = false }) {
     cta,
     offerDetails = {},
     highlights = [],
-    idealFor = [],
     computedScore,
     category,
     disclaimer,
@@ -128,7 +127,11 @@ export default function BrokerBox({ offer, isTopPick = false }) {
       value: offerDetails.requirement ?? "Check offer terms",
     },
     { label: "Payout", value: offerDetails.payout ?? "Varies by broker" },
-    { label: "Verification", value: offerDetails.expiration ?? "Verified 2025" },
+    {
+      label: "Verification",
+      value: offerDetails.expiration ?? "Verified quarterly from official broker data feed",
+      subtle: true,
+    },
   ];
 
   const rawOfferText =
@@ -164,57 +167,63 @@ export default function BrokerBox({ offer, isTopPick = false }) {
         </span>
       )}
 
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
-                <img
-                  src={logoSrc}
-                  alt={`${name} logo`}
-                  className="h-12 w-12 object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                  {categoryIcon}
-                  <span>{categoryLabel}</span>
-                </div>
-                <h3 className="text-2xl font-bold text-white">{name}</h3>
+      <div className="flex flex-col gap-4">
+        <header className="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/90 shadow-inner">
+              <img
+                src={logoSrc}
+                alt={`${name} logo`}
+                className="h-10 w-10 object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">{name}</h3>
+              <div className="flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                {categoryIcon} <span>{categoryLabel}</span>
               </div>
             </div>
-
-            <Link
-              to={`/offers/${slug ?? id}`}
-              className="inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
-              aria-label={`Read the ${name} broker review`}
-            >
-              <ScoreBadge score={computedScore} className="shadow-lg shadow-emerald-500/20" />
-            </Link>
           </div>
 
-          <div className="flex flex-col gap-1">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
-              Current Offer
-            </span>
-            <div className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}>
-              {offerHighlightText}
-            </div>
+          <Link
+            to={`/offers/${slug ?? id}`}
+            className="inline-flex items-center rounded-md bg-emerald-600/10 px-3 py-1.5 sm:px-4 sm:py-2 hover:bg-emerald-600/20 transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            aria-label={`Read the ${name} broker review`}
+          >
+            <ScoreBadge
+              score={computedScore}
+              className="text-lg sm:text-xl font-bold text-emerald-200 bg-emerald-700/30 shadow-md shadow-emerald-500/20"
+            />
+          </Link>
+        </header>
+
+        <div className="mt-2 sm:mt-3 flex flex-col gap-2">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
+            Current Offer
+          </span>
+          <div className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}>
+            {offerHighlightText}
           </div>
         </div>
 
         {headline && <p className="text-sm font-semibold text-emerald-200">{headline}</p>}
         {summary && <p className="text-sm text-slate-300">{summary}</p>}
 
-        <div className="mt-auto space-y-4">
-          <dl className="grid grid-cols-1 gap-3 text-sm text-slate-200 sm:grid-cols-2">
+        <div className="mt-auto flex flex-col gap-4">
+          <dl className="grid grid-cols-1 gap-4 text-sm text-slate-200 sm:grid-cols-2">
             {detailItems.map((item) => (
               <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-3">
                 <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                   {item.label}
                 </dt>
-                <dd className="mt-1 text-sm font-semibold text-white">{item.value}</dd>
+                <dd
+                  className={`mt-1 text-sm ${
+                    item.subtle ? "font-medium text-emerald-100" : "font-semibold text-white"
+                  }`}
+                >
+                  {item.value}
+                </dd>
               </div>
             ))}
           </dl>
@@ -235,25 +244,7 @@ export default function BrokerBox({ offer, isTopPick = false }) {
             </div>
           )}
 
-          {idealFor.length > 0 && (
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                Ideal For
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {idealFor.map((persona) => (
-                  <span
-                    key={persona}
-                    className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200"
-                  >
-                    {persona}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <a
               href={cta?.href ?? "#"}
               target="_blank"
@@ -263,7 +254,7 @@ export default function BrokerBox({ offer, isTopPick = false }) {
               Sign Up Now
             </a>
             <Link
-              to={`/broker/${slug ?? id}`}
+              to={`/offers/${slug ?? id}`}
               className="inline-flex flex-1 items-center justify-center rounded-xl border border-emerald-400/60 px-4 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               Read Review
