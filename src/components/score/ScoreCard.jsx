@@ -11,7 +11,12 @@ import ScoreBadge from "./ScoreBadge";
  *  - subMetrics: { transparency, cost, features, support, returns }
  *  - type: "broker" | "robo"
  */
-export default function ScoreCard({ name, subMetrics = {}, type = "broker" }) {
+export default function ScoreCard({
+  name,
+  subMetrics = {},
+  type = "broker",
+  scoreOverride,
+}) {
   // Basic weighted display pulled from same philosophy as score.js (already normalized)
   const metricLabels = {
     transparency: "Transparency",
@@ -19,14 +24,19 @@ export default function ScoreCard({ name, subMetrics = {}, type = "broker" }) {
     features: "Features & Tools",
     support: "Customer Support",
     returns: "Performance / Returns",
+    fees: "Cost / Fees",
+    platform: "Platform Experience",
   };
 
   // Calculate the simple average for visual reference
   const values = Object.values(subMetrics);
-  const score =
+  const averageScore =
     values.length > 0
-      ? Math.round(values.reduce((a, b) => a + b, 0) / values.length)
+      ? values.reduce((a, b) => a + b, 0) / values.length
       : 0;
+  const score = Number.isFinite(scoreOverride)
+    ? Number(scoreOverride)
+    : Math.round(averageScore);
 
   // Determine tier color (same thresholds as ScoreBadge)
   let tier = "average";
@@ -47,7 +57,7 @@ export default function ScoreCard({ name, subMetrics = {}, type = "broker" }) {
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">
           {name}
         </h3>
-        <ScoreBadge score={score} />
+        <ScoreBadge score={Math.round(score)} />
       </div>
 
       <div className="space-y-2">

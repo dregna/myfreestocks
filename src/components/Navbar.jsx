@@ -1,4 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
+const NAV_ITEMS = [
+  { to: "/", label: "Home" },
+  { to: "/offers", label: "Broker Offers" },
+];
 
 export default function Navbar() {
   return (
@@ -10,9 +16,22 @@ export default function Navbar() {
         </picture>
       </div>
       <ul className="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300">
-        <li><a href="#" className="hover:text-primary">Promotions</a></li>
-        <li><a href="#" className="hover:text-primary">Robo-Advisors</a></li>
-        <li><a href="#" className="hover:text-primary">Learn</a></li>
+        {NAV_ITEMS.map((item) => (
+          <li key={item.to}>
+            <NavLink
+              to={item.to}
+              className={({ isActive }) =>
+                `transition-colors hover:text-primary ${
+                  isActive
+                    ? "text-primary font-semibold"
+                    : "text-gray-700 dark:text-gray-300"
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
