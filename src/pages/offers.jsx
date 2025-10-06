@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ScoreCard from "../components/score/ScoreCard";
 import ScoreBadge from "../components/score/ScoreBadge";
+import ScoreTicker from "../components/score/ScoreTicker";
 import useBrokerData from "../hooks/useBrokerData";
 
 function computeScore(breakdown = {}) {
@@ -213,6 +214,8 @@ export default function OffersPage() {
           </nav>
         </div>
       </header>
+
+      <ScoreTicker brokers={brokerData} />
 
       <main className="mx-auto max-w-6xl px-4">
         <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)]">

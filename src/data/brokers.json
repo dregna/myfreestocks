@@ -91,6 +91,11 @@
         "returns": { "weight": 0.15, "score": 78 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-08-15", "score": 81 },
+      { "date": "2025-09-15", "score": 83 },
+      { "date": "2025-10-15", "score": 84 }
+    ],
     "finalVerdict": "Robinhood is ideal for new and mobile-first investors who prize simplicity and no-commission trading, but data-heavy traders may need more robust research tools.",
     "referralUrl": "https://robinhood.com/",
     "disclaimer": "Promotional stock value varies with market price. Terms and eligibility apply."
@@ -187,6 +192,11 @@
         "returns": { "weight": 0.15, "score": 82 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-08-15", "score": 88 },
+      { "date": "2025-09-15", "score": 88 },
+      { "date": "2025-10-15", "score": 88 }
+    ],
     "finalVerdict": "Webull is a standout for active traders who want deep analytics and extended-hours access without platform fees, though newcomers may prefer a gentler interface.",
     "referralUrl": "https://www.webull.com/",
     "disclaimer": "Stock reward value varies by draw. Promotional terms from Webull apply."
@@ -283,6 +293,10 @@
         "returns": { "weight": 0.15, "score": 80 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 87 },
+      { "date": "2025-10-15", "score": 86 }
+    ],
     "finalVerdict": "Moomoo excels for globally minded traders who want deep market data without paying platform subscriptions, though the dense interface can challenge newcomers.",
     "referralUrl": "https://www.moomoo.com/",
     "disclaimer": "Promotional stock awards depend on deposit size and campaign timing. Review Moomoo terms."
@@ -379,6 +393,10 @@
         "returns": { "weight": 0.15, "score": 88 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 88 },
+      { "date": "2025-10-15", "score": 89 }
+    ],
     "finalVerdict": "SoFi Invest is best for members who want banking, lending, and investing in one app with automated portfolios and advisor access, though active traders may crave more advanced tools.",
     "referralUrl": "https://www.sofi.com/invest/",
     "disclaimer": "Bonus stock value depends on deposit tiers and holding requirements. Review SoFi's promotional terms."
@@ -475,6 +493,10 @@
         "returns": { "weight": 0.15, "score": 89 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 89 },
+      { "date": "2025-10-15", "score": 90 }
+    ],
     "finalVerdict": "Wealthfront remains a leader for automated investing with sophisticated tax management and a seamless cash experience, though investors needing live advisors should look elsewhere.",
     "referralUrl": "https://www.wealthfront.com/",
     "disclaimer": "Fee waiver applies to new customers and may require referral link activation."
@@ -571,6 +593,10 @@
         "returns": { "weight": 0.15, "score": 87 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 87 },
+      { "date": "2025-10-15", "score": 88 }
+    ],
     "finalVerdict": "Betterment is an excellent long-term partner for investors who want automated portfolios, cash tools, and clear goal tracking without managing individual securities.",
     "referralUrl": "https://www.betterment.com/",
     "disclaimer": "Promotional fee waivers vary by deposit size and timeframe."
@@ -665,6 +691,10 @@
         "returns": { "weight": 0.15, "score": 90 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 92 },
+      { "date": "2025-10-15", "score": 93 }
+    ],
     "finalVerdict": "Fidelity is the gold standard for investors who want sophisticated research, retirement planning, and broad investment choice backed by stellar service.",
     "referralUrl": "https://www.fidelity.com/",
     "disclaimer": "Bonuses vary by promotion and require maintaining assets for eligibility."
@@ -759,6 +789,10 @@
         "returns": { "weight": 0.15, "score": 88 }
       }
     },
+    "scoreHistory": [
+      { "date": "2025-09-15", "score": 92 },
+      { "date": "2025-10-15", "score": 91 }
+    ],
     "finalVerdict": "Charles Schwab is a balanced choice for investors who value strong service, broad product access, and low-cost index investing, even if the interface feels more traditional.",
     "referralUrl": "https://www.schwab.com/",
     "disclaimer": "Bonus eligibility depends on net new assets maintained for the promotional period."
