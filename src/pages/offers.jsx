@@ -385,6 +385,7 @@ export default function OffersPage() {
                     scoreOverride={offer.computedScore}
                     variant="dark"
                     className="bg-[#0A152E]/60"
+                    slug={offer.slug ?? offer.id}
                   />
                 </div>
 
