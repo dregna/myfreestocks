@@ -164,40 +164,42 @@ export default function BrokerBox({ offer, isTopPick = false }) {
         </span>
       )}
 
-      <Link
-        to={`/offers/${slug ?? id}`}
-        className="absolute right-6 top-6 inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
-        aria-label={`Read the ${name} broker review`}
-      >
-        <ScoreBadge score={computedScore} className="shadow-lg shadow-emerald-500/20" />
-      </Link>
-
       <div className="flex flex-col gap-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex items-start gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 shadow-inner">
-              <img
-                src={logoSrc}
-                alt={`${name} logo`}
-                className="h-12 w-12 object-contain"
-                loading="lazy"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
-                {categoryIcon}
-                <span>{categoryLabel}</span>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-1 items-center gap-3 sm:gap-4">
+              <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-white/90 shadow-inner">
+                <img
+                  src={logoSrc}
+                  alt={`${name} logo`}
+                  className="h-12 w-12 object-contain"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="text-2xl font-bold text-white">{name}</h3>
-
-              <div className="flex flex-col gap-1">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
-                  Current Offer
-                </span>
-                <div className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}>
-                  {offerHighlightText}
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold text-white">{name}</h3>
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">
+                  {categoryIcon}
+                  <span>{categoryLabel}</span>
                 </div>
               </div>
+            </div>
+
+            <Link
+              to={`/offers/${slug ?? id}`}
+              className="inline-flex items-center rounded-md p-1.5 transition-transform duration-200 hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:p-2"
+              aria-label={`Read the ${name} broker review`}
+            >
+              <ScoreBadge score={computedScore} className="shadow-lg shadow-emerald-500/20" />
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
+              Current Offer
+            </span>
+            <div className={`inline-block rounded-md px-3 py-1 text-sm font-medium ${offerHighlightClass}`}>
+              {offerHighlightText}
             </div>
           </div>
         </div>
