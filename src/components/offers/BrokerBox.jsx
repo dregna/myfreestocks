@@ -187,7 +187,7 @@ export default function BrokerBox({ offer, isTopPick = false }) {
             </div>
 
             <Link
-              to={`/offers/${slug ?? id}`}
+              to={`/broker/${slug ?? id}`}
               className="inline-flex items-center rounded-md px-3 py-1.5 sm:px-4 sm:py-2 bg-emerald-700/20 hover:bg-emerald-700/30 transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               aria-label={`Read the ${name} broker review`}
             >
