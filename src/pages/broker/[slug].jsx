@@ -39,19 +39,22 @@ export default function BrokerDeepDivePage() {
     error: reviewError,
   } = useReviewData();
 
+  const brokers = Array.isArray(brokerData) ? brokerData : [];
+  const reviews = Array.isArray(reviewData) ? reviewData : [];
+
   const broker = useMemo(
-    () => brokerData.find((entry) => (entry.slug ?? entry.id) === slug),
-    [brokerData, slug]
+    () => brokers.find((entry) => (entry.slug ?? entry.id) === slug),
+    [brokers, slug]
   );
 
   const review = useMemo(() => {
-    if (!reviewData.length) {
+    if (!reviews.length) {
       return null;
     }
 
     if (broker) {
       return (
-        reviewData.find(
+        reviews.find(
           (entry) =>
             entry.brokerId === broker.id ||
             entry.slug === (broker.slug ?? broker.id) ||
@@ -61,14 +64,14 @@ export default function BrokerDeepDivePage() {
     }
 
     return (
-      reviewData.find(
+      reviews.find(
         (entry) =>
           entry.brokerId === slug ||
           entry.slug === slug ||
           entry.id === `${slug}-review`
       ) ?? null
     );
-  }, [broker, reviewData, slug]);
+  }, [broker, reviews, slug]);
 
   const isLoading = brokersLoading || reviewsLoading;
   const loadError = brokerError || reviewError;
@@ -137,6 +140,14 @@ export default function BrokerDeepDivePage() {
     };
   }, [pageTitle, metaDescription]);
 
+  if (!brokers || brokers.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  if (!broker) {
+    return <div>Broker not found.</div>;
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#050B1A] text-slate-100">
@@ -160,33 +171,6 @@ export default function BrokerDeepDivePage() {
           <div className="space-y-4 rounded-3xl border border-rose-500/40 bg-rose-500/10 p-10 shadow-[0_30px_80px_-60px_rgba(248,113,113,0.45)]">
             <h1 className="text-3xl font-semibold text-white">We can't load this review</h1>
             <p className="text-sm text-rose-100">Please refresh the page or try again later. Our team is refreshing the data feed.</p>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
-  if (!broker) {
-    return (
-      <div className="min-h-screen bg-[#050B1A] text-slate-100">
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-4 text-center">
-          <Link
-            to="/offers"
-            className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:text-emerald-200"
-          >
-            <span aria-hidden>←</span> Back to Offers
-          </Link>
-          <div className="space-y-4 rounded-3xl border border-white/5 bg-[#0B1622] p-10 shadow-[0_30px_80px_-60px_rgba(16,185,129,0.5)]">
-            <h1 className="text-3xl font-semibold text-white">Broker deep dive not found</h1>
-            <p className="text-sm text-slate-300">
-              We couldn't locate the review you're after. Please return to the offers page to explore the latest verified promotions.
-            </p>
-            <Link
-              to="/offers"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-            >
-              View current offers
-            </Link>
           </div>
         </main>
       </div>

@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import ScoreCard from "../score/ScoreCard";
 import ScoreBadge from "../score/ScoreBadge";
 import calculateMyFreeStockScore from "../../utils/score";
@@ -53,7 +54,9 @@ export default function BrokerOfferCard({ offer }) {
         <div className="flex-1 space-y-6">
           <header className="space-y-4">
             <div className="flex flex-wrap items-center gap-4">
-              <ScoreBadge score={displayScore} />
+              <Link to={`/broker/${slug ?? id}`}>
+                <ScoreBadge score={displayScore} />
+              </Link>
               <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
                 Verified January 2025
               </span>
