@@ -129,7 +129,7 @@ export default function App() {
             <a href="#how-it-works" className={getDesktopNavClass("/", { highlight: false })}>
               How It Works
             </a>
-            <a href="#ai-robo" className={getDesktopNavClass("/", { highlight: false })}>
+            <a href="/robo-advisors" className={getDesktopNavClass("/robo-advisors")}>
               AI Robo-Advisors
             </a>
             <a href="#contact" className={getDesktopNavClass("/", { highlight: false })}>
@@ -189,9 +189,9 @@ export default function App() {
               Compare
             </a>
             <a
-              href="#ai-robo"
+              href="/robo-advisors"
               onClick={handleCloseMenu}
-              className={getMobileNavClass("/", { highlight: false })}
+              className={getMobileNavClass("/robo-advisors")}
             >
               Robo-Advisors
             </a>
