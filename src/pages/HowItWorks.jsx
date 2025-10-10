@@ -1,4 +1,5 @@
 import React from "react";
+import SEO from "@/components/SEO";
 import MarketSentimentVisualizer from "../components/ai/MarketSentimentVisualizer";
 
 const workflowSteps = [
@@ -68,7 +69,13 @@ const faqItems = [
 
 export default function HowItWorks() {
   return (
-    <div className="bg-[#050B1A] text-slate-100 min-h-screen">
+    <>
+      <SEO
+        title="How MyFreeStocks Works — Score System & Transparency"
+        description="Learn how our MyFreeStock Score™ ranks brokers based on transparency, cost, features, and support."
+        url="https://myfreestocks.com/how-it-works"
+      />
+      <div className="bg-[#050B1A] text-slate-100 min-h-screen">
         <section className="text-center py-12">
           <div className="relative overflow-hidden">
             <div className="absolute -top-20 right-10 hidden h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl lg:block" />
@@ -182,5 +189,20 @@ export default function HowItWorks() {
           </div>
         </section>
       </div>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        })}
+      </script>
+    </>
   );
 }

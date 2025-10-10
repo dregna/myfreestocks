@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
         <Link to="/" className="flex items-center gap-3" onClick={handleCloseMenu}>
-          <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
+          <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" loading="lazy" />
         </Link>
 
         <div className="hidden items-center gap-6 text-sm font-medium md:flex">

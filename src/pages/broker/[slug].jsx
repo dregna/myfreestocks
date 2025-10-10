@@ -245,7 +245,7 @@ export default function BrokerDeepDivePage() {
             <div className="flex flex-1 items-start gap-6">
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-emerald-400/30 bg-white/5">
                 {logo ? (
-                  <img src={logo} alt={`${name} logo`} className="h-16 w-16 object-contain" />
+                  <img src={logo} alt={`${name} logo`} className="h-16 w-16 object-contain" loading="lazy" />
                 ) : (
                   <span className="text-2xl font-semibold text-emerald-200">
                     {name?.charAt(0) ?? ""}
