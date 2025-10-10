@@ -1,6 +1,6 @@
 // MyFreeStocks Robo-Advisors (Next-Gen AI Investors)
 import React, { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ScoreBadge from "../components/score/ScoreBadge";
 
 const aiPlatforms = [
@@ -198,7 +198,7 @@ export default function RoboAdvisors() {
   const featuredPlatform = aiPlatforms[0];
 
   return (
-    <div className="min-h-screen bg-[#050B1A] text-slate-100">
+    <div className="bg-[#050B1A] text-slate-100">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(12px); }
@@ -206,35 +206,7 @@ export default function RoboAdvisors() {
         }
       `}</style>
 
-      <header className="border-b border-slate-800 bg-[#050B1A]/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
-          <Link to="/" className="flex items-center gap-3">
-            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
-          </Link>
-          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <Link to="/offers" className="transition hover:text-emerald-300">
-              Offers
-            </Link>
-            <NavLink to="/how-it-works" className="transition hover:text-emerald-300">
-              How It Works
-            </NavLink>
-            <Link to="/robo-advisors" className="transition hover:text-emerald-300">
-              AI Robo-Advisors
-            </Link>
-            <a href="/#contact" className="transition hover:text-emerald-300">
-              Contact
-            </a>
-          </nav>
-          <Link
-            to="/offers"
-            className="hidden rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110 md:inline-flex"
-          >
-            Compare Offers
-          </Link>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-6xl px-4 pb-24">
+      <div className="mx-auto max-w-6xl px-4 pb-24">
         <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)] motion-safe:animate-[fadeIn_0.8s_ease-out]">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
@@ -445,28 +417,7 @@ export default function RoboAdvisors() {
             </Link>
           </div>
         </section>
-      </main>
-
-      <footer className="border-t border-slate-800 bg-[#050B1A]">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-          <div>
-            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="mb-3 h-8 w-auto" />
-            <p className="text-xs">Curated free stock offers & robo-advisor insights</p>
-          </div>
-          <div>© {new Date().getFullYear()} MyFreeStocks.com. All rights reserved.</div>
-          <div className="flex gap-4 text-xs text-emerald-300">
-            <a href="#" className="transition hover:text-emerald-200">
-              Privacy
-            </a>
-            <a href="#" className="transition hover:text-emerald-200">
-              Terms
-            </a>
-            <a href="#" className="transition hover:text-emerald-200">
-              Support
-            </a>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
