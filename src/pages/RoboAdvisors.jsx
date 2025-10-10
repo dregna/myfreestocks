@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import ScoreBadge from "../components/score/ScoreBadge";
 
 const aiPlatforms = [
@@ -199,16 +200,22 @@ export default function RoboAdvisors() {
   const featuredPlatform = aiPlatforms[0];
 
   return (
-    <Layout>
-      <div className="bg-[#050B1A] text-slate-100">
-        <style>{`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-        `}</style>
+    <>
+      <SEO
+        title="Top Robo Advisors Compared (2025)"
+        description="We evaluate leading robo advisors by cost, transparency, and performance. Discover the best fit for your investing goals."
+        url="https://myfreestocks.com/robo-advisors"
+      />
+      <Layout>
+        <div className="bg-[#050B1A] text-slate-100">
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(12px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
 
-        <div className="mx-auto max-w-6xl px-4 pb-24">
+          <div className="mx-auto max-w-6xl px-4 pb-24">
           <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)] motion-safe:animate-[fadeIn_0.8s_ease-out]">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="space-y-6">
@@ -419,8 +426,9 @@ export default function RoboAdvisors() {
               </Link>
             </div>
           </section>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }

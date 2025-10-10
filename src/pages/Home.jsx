@@ -1,4 +1,5 @@
 import React from "react";
+import SEO from "@/components/SEO";
 
 const offers = [
   {
@@ -85,28 +86,34 @@ const tickerItems = [
 
 export default function Home() {
   return (
-    <div className="bg-[#050B1A] text-slate-100">
-      <style>{`
-        @keyframes ticker {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+    <>
+      <SEO
+        title="MyFreeStocks — Compare Brokers & Investing Offers"
+        description="Your hub for transparent stock and broker comparisons. Track market sentiment, explore top offers, and learn how to invest smarter — for free."
+        url="https://myfreestocks.com/"
+      />
+        <div className="bg-[#050B1A] text-slate-100">
+          <style>{`
+            @keyframes ticker {
+              0% { transform: translateX(0%); }
+              100% { transform: translateX(-50%); }
+            }
+          `}</style>
 
-      <div className="border-y border-slate-800 bg-[#071025]">
-        <div className="relative overflow-hidden">
-          <div
-            className="flex min-w-[200%] gap-8 py-3 text-sm font-semibold uppercase tracking-wide text-emerald-300"
-            style={{ animation: "ticker 30s linear infinite" }}
-          >
-            {[...tickerItems, ...tickerItems].map((item, index) => (
-              <div key={`${item.symbol}-${index}`} className="flex items-center gap-2">
-                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-emerald-300">{item.symbol}</span>
-                <span className={item.change.startsWith("-") ? "text-rose-400" : "text-emerald-300"}>
-                  {item.change}
-                </span>
-              </div>
-            ))}
+          <div className="border-y border-slate-800 bg-[#071025]">
+            <div className="relative overflow-hidden">
+              <div
+                className="flex min-w-[200%] gap-8 py-3 text-sm font-semibold uppercase tracking-wide text-emerald-300"
+                style={{ animation: "ticker 30s linear infinite" }}
+              >
+                {[...tickerItems, ...tickerItems].map((item, index) => (
+                  <div key={`${item.symbol}-${index}`} className="flex items-center gap-2">
+                    <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-emerald-300">{item.symbol}</span>
+                    <span className={item.change.startsWith("-") ? "text-rose-400" : "text-emerald-300"}>
+                      {item.change}
+                    </span>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
@@ -289,7 +296,8 @@ export default function Home() {
             </table>
           </div>
         </section>
-      </div>
-    </div>
+          </div>
+        </div>
+    </>
   );
 }
