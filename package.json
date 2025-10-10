@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node ./scripts/vite-prerender.mjs",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -29,7 +29,6 @@
     "globals": "^16.4.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.13",
-    "vite": "^7.1.7",
-    "vite-plugin-prerender": "^1.0.8"
+    "vite": "^7.1.7"
   }
 }
