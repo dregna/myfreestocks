@@ -54,3 +54,53 @@ This file defines the roles, behaviors, and scopes for all automation and AI-ass
 **Version:** 1.0  
 **Last Updated:** 2025-10-09  
 **Maintainer:** MyFreeStocks Dev Team
+---
+
+### ⚡ Codex Execution Directives
+
+**Primary Agent:** `builder`  
+**Fallback Agent:** `data`  
+
+Codex should interpret this repository as a **React + Vite web application** and apply the following rules during execution:
+
+1. **Respect Layout Integrity:**  
+   - Never overwrite the site-wide `<Layout>` or `<PageShell>` components.  
+   - Preserve the overall navigation, header, footer, and theme consistency.
+
+2. **Scoped Modifications Only:**  
+   - When updating a page (e.g., `/offers`, `/how-it-works`), change only that route’s files inside `/src/pages` or its direct components.  
+   - Do not modify `App.jsx`, router configuration, or other unrelated modules unless instructed.
+
+3. **Styling Rules:**  
+   - Use TailwindCSS utility classes with the brand palette (`green-600`, `green-400`, `gray-900`, `gray-50`).  
+   - Maintain dark/light mode responsiveness.
+
+4. **Dependencies:**  
+   - Core: `react`, `react-router-dom`, `vite`, `tailwindcss`.  
+   - Visuals: `framer-motion`, `d3`, `lucide-react`.  
+   - Never introduce heavy frameworks unless explicitly requested.
+
+5. **Data & Visualization:**  
+   - When handling stock or market data, prefer local CSV or API mock sources inside `/src/data/`.  
+   - Use `d3.csv()` and React hooks for parsing and rendering.
+
+6. **Testing & Deployment:**  
+   - Validate output builds without warnings.  
+   - Ensure compatibility with Netlify’s default React/Vite build pipeline.  
+   - Keep all assets within relative paths (`/src`, `/public`).
+
+---
+
+### 🧭 Codex Behavior Map
+| Task Type | Responsible Agent | Example Action |
+|------------|------------------|----------------|
+| UI / component creation | builder | Create a new JSX component under `/src/components` |
+| Visual or animation | data | Build D3 + Framer Motion visualization |
+| Branding / logo / colors | designer | Adjust color tokens or images in `/assets` |
+| Text / SEO / descriptions | content | Edit `/src/pages/*.jsx` or markdown sections |
+| Referral logic | referrals | Update broker signup links and scoring logic |
+| Validation | qa | Run build checks, lint, optimize imports |
+
+---
+
+**Codex should read this file at runtime to determine which agent to activate** and follow the associated standards before committing or pushing changes.
