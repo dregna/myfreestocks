@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/Layout";
+import PageShell from "../components/layout/PageShell";
 import MarketSentimentVisualizer from "../components/ai/MarketSentimentVisualizer";
 
 const workflowSteps = [
@@ -69,7 +69,7 @@ const faqItems = [
 
 export default function HowItWorks() {
   return (
-    <Layout>
+    <PageShell>
       <section className="text-center py-12">
         <div className="relative overflow-hidden">
           <div className="absolute -top-20 right-10 hidden h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl lg:block" />
@@ -182,6 +182,6 @@ export default function HowItWorks() {
           </div>
         </div>
       </section>
-    </Layout>
+    </PageShell>
   );
 }
