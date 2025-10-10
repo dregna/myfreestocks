@@ -1,6 +1,6 @@
-const path = require("node:path");
-const fs = require("node:fs/promises");
-const { createServer } = require("vite");
+import path from "node:path";
+import { promises as fs } from "node:fs";
+import { createServer } from "vite";
 
 class ReactRenderer {
   constructor(options = {}) {
@@ -92,4 +92,4 @@ class ReactRenderer {
   }
 }
 
-module.exports = ReactRenderer;
+export default ReactRenderer;

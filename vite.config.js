@@ -2,11 +2,11 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { createRequire } from "node:module";
+import ReactRenderer from "./scripts/prerender/reactRenderer.js";
 
 const require = createRequire(import.meta.url);
 const prerenderModule = require("vite-plugin-prerender");
 const prerender = prerenderModule?.default ?? prerenderModule;
-const ReactRenderer = require("./scripts/prerender/reactRenderer.cjs");
 
 const distDir = fileURLToPath(new URL("./dist", import.meta.url));
 
