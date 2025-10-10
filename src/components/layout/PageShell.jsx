@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import navLinks from "./navLinks";
 
 const tickerItems = [
   { symbol: "AAPL", change: "+1.24%" },
@@ -33,19 +34,34 @@ export default function PageShell({ children, mainClassName = "" }) {
             <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <Link to="/offers" className="transition hover:text-emerald-300">
-              Offers
-            </Link>
-            <NavLink to="/how-it-works" className="transition hover:text-emerald-300">
-              How It Works
-            </NavLink>
-            <NavLink to="/robo-advisors" className="transition hover:text-emerald-300">
-              AI Robo-Advisors
-            </NavLink>
-            <a href="/#contact" className="transition hover:text-emerald-300">
-              Contact
-            </a>
+          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+            {navLinks.map((item) => {
+              if (item.href) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="transition text-slate-200 hover:text-emerald-300"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `transition hover:text-emerald-300 ${
+                      isActive ? "text-emerald-300" : "text-slate-200"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
           </nav>
 
           <Link
@@ -89,32 +105,43 @@ export default function PageShell({ children, mainClassName = "" }) {
           }`}
         >
           <nav className="flex flex-col gap-2 px-4 py-4 text-sm font-semibold">
-            <Link to="/" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
-              Home
-            </Link>
-            <Link to="/offers" onClick={handleCloseMenu} className="rounded-lg px-3 py-2 transition hover:bg-white/10">
-              Offers
-            </Link>
-            <a
-              href="/#compare"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Compare
-            </a>
-            <Link
-              to="/robo-advisors"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Robo-Advisors
-            </Link>
+            {navLinks.map((item) => {
+              const baseClasses = "rounded-lg px-3 py-2 transition hover:bg-white/10";
+
+              if (item.href) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={handleCloseMenu}
+                    className={`${baseClasses} text-white`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={handleCloseMenu}
+                  className={({ isActive }) =>
+                    `${baseClasses} ${
+                      isActive ? "bg-white/10 text-emerald-200" : "text-white"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
             <Link
               to="/offers"
               onClick={handleCloseMenu}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
             >
-              See Offers
+              Compare Offers
             </Link>
           </nav>
         </div>

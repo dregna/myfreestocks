@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import navLinks from "./components/layout/navLinks";
 
 const tickerItems = [
   { symbol: "AAPL", change: "+1.24%" },
@@ -123,21 +124,35 @@ export default function App() {
             <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
           </div>
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <a href="/offers" className={getDesktopNavClass("/offers")}>
-              Offers
-            </a>
-            <NavLink
-              to="/how-it-works"
-              className={getDesktopNavClass("/how-it-works", { highlight: false })}
-            >
-              How It Works
-            </NavLink>
-            <a href="/robo-advisors" className={getDesktopNavClass("/robo-advisors")}>
-              AI Robo-Advisors
-            </a>
-            <a href="#contact" className={getDesktopNavClass("/", { highlight: false })}>
-              Contact
-            </a>
+            {navLinks.map((item) => {
+              if (item.href) {
+                const targetPath = item.href.startsWith("/#") ? "/" : item.href;
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={getDesktopNavClass(targetPath, {
+                      highlight: item.highlight !== false,
+                    })}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={getDesktopNavClass(item.to, {
+                    highlight: item.highlight !== false,
+                  })}
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
           </nav>
           <a
             href="/offers"
@@ -178,32 +193,43 @@ export default function App() {
           }`}
         >
           <nav className="flex flex-col gap-2 px-4 py-4 text-sm font-semibold">
-            <a href="#top" onClick={handleCloseMenu} className={getMobileNavClass("/")}>
-              Home
-            </a>
-            <a href="/offers" onClick={handleCloseMenu} className={getMobileNavClass("/offers")}>
-              Offers
-            </a>
-            <a
-              href="#compare"
-              onClick={handleCloseMenu}
-              className={getMobileNavClass("/", { highlight: false })}
-            >
-              Compare
-            </a>
-            <a
-              href="/robo-advisors"
-              onClick={handleCloseMenu}
-              className={getMobileNavClass("/robo-advisors")}
-            >
-              Robo-Advisors
-            </a>
+            {navLinks.map((item) => {
+              const baseClasses = "rounded-lg px-3 py-2 transition hover:bg-white/10";
+
+              if (item.href) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={handleCloseMenu}
+                    className={`${baseClasses} text-white`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={handleCloseMenu}
+                  className={({ isActive }) =>
+                    `${baseClasses} ${
+                      isActive ? "bg-white/10 text-emerald-200" : "text-white"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
             <a
               href="/offers"
               onClick={handleCloseMenu}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
             >
-              See Offers
+              Compare Offers
             </a>
           </nav>
         </div>
