@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import ScoreBadge from "../components/score/ScoreBadge";
 import ScoreTicker from "../components/score/ScoreTicker";
 import BrokerBox from "../components/offers/BrokerBox";
@@ -103,16 +104,35 @@ export default function OffersPage() {
     };
   }, [sortedOffers]);
 
+  const structuredData = useMemo(
+    () =>
+      JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Brokerage Offers",
+        itemListElement: sortedOffers.map((offer, index) => {
+          const identifier = offer?.slug ?? offer?.id ?? `offer-${index + 1}`;
+
+          return {
+            "@type": "Offer",
+            name: offer?.name ?? "Brokerage Offer",
+            url: `https://myfreestocks.com/offers/${identifier}`,
+            position: index + 1,
+          };
+        }),
+      }),
+    [sortedOffers]
+  );
+
   return (
-    <>
+    <Layout>
       <SEO
         title="Best Brokerage Offers & Sign-Up Bonuses (2025)"
         description="Find current free stock and cash bonuses from leading brokers. Updated daily and verified by MyFreeStocks."
         url="https://myfreestocks.com/offers"
       />
-      <Layout>
-        <div className="bg-[#050B1A] text-slate-100">
-          <ScoreTicker brokers={sortedOffers} />
+      <div className="bg-[#050B1A] text-slate-100">
+        <ScoreTicker brokers={sortedOffers} />
 
         <div className="mx-auto max-w-6xl px-4 pb-24">
           <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)]">
@@ -347,21 +367,8 @@ export default function OffersPage() {
             </div>
           </section>
         </div>
-        </div>
-      </Layout>
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Brokerage Offers",
-          itemListElement: sortedOffers.map((offer, index) => ({
-            "@type": "Offer",
-            name: offer.name,
-            url: `https://myfreestocks.com/offers/${offer.slug ?? offer.id}`,
-            position: index + 1,
-          })),
-        })}
-      </script>
-    </>
+      </div>
+      <script type="application/ld+json">{structuredData}</script>
+    </Layout>
   );
 }
