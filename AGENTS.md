@@ -58,8 +58,16 @@ This file defines the roles, behaviors, and scopes for all automation and AI-ass
 
 ### ⚡ Codex Execution Directives
 
-**Primary Agent:** `builder`  
-**Fallback Agent:** `data`  
+**Primary Agent:** `builder`
+**Fallback Agent:** `data`
+
+#### Builder Agent
+
+### Layout Policy
+All new pages must import and render their content inside `<Layout>` from `@/components/layout/Layout`.    
+Do not recreate header, nav, or footer markup manually.    
+Use `<Navbar>` and `<Footer>` only inside the shared layout.    
+If older pages still reference `<PageShell>`, treat it as an alias of `<Layout>` for backward compatibility.  
 
 Codex should interpret this repository as a **React + Vite web application** and apply the following rules during execution:
 
