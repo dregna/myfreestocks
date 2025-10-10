@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 const NAV_ITEMS = [
   { to: "/", label: "Home" },
   { to: "/offers", label: "Broker Offers" },
+  { to: "/how-it-works", label: "How It Works" },
   { to: "/robo-advisors", label: "AI Robo-Advisors" },
 ];
 
