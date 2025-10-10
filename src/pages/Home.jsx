@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 
 const offers = [
@@ -85,6 +86,29 @@ const tickerItems = [
 ];
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "MyFreeStocks",
+    url: "https://myfreestocks.com/",
+    description:
+      "Compare brokerages, explore stock insights, and discover the best free investing offers on MyFreeStocks.",
+    publisher: {
+      "@type": "Organization",
+      name: "MyFreeStocks",
+      url: "https://myfreestocks.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://myfreestocks.com/logo-dark.svg",
+      },
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://myfreestocks.com/offers?broker={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <>
       <SEO
@@ -92,8 +116,11 @@ export default function Home() {
         description="Your hub for transparent stock and broker comparisons. Track market sentiment, explore top offers, and learn how to invest smarter — for free."
         url="https://myfreestocks.com/"
       />
-        <div className="bg-[#050B1A] text-slate-100">
-          <style>{`
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      </Helmet>
+      <div className="bg-[#050B1A] text-slate-100">
+        <style>{`
             @keyframes ticker {
               0% { transform: translateX(0%); }
               100% { transform: translateX(-50%); }

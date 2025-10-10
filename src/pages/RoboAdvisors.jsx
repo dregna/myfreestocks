@@ -1,5 +1,6 @@
 // MyFreeStocks Robo-Advisors (Next-Gen AI Investors)
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
@@ -198,6 +199,32 @@ export default function RoboAdvisors() {
   }, []);
 
   const featuredPlatform = aiPlatforms[0];
+  const itemList = aiPlatforms.map((platform, index) => {
+    const slug = platform.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
+    return {
+      "@type": "ListItem",
+      position: index + 1,
+      name: platform.name,
+      description: platform.tagline,
+      url:
+        platform.referral && platform.referral !== "#"
+          ? platform.referral
+          : `https://myfreestocks.com/robo-advisors#${slug}`,
+    };
+  });
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Top AI Robo-Advisors",
+    description:
+      "Curated list of automated investment platforms blending machine learning, automation, and human expertise.",
+    itemListElement: itemList,
+  };
 
   return (
     <>
@@ -206,6 +233,9 @@ export default function RoboAdvisors() {
         description="We evaluate leading robo advisors by cost, transparency, and performance. Discover the best fit for your investing goals."
         url="https://myfreestocks.com/robo-advisors"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      </Helmet>
       <Layout>
         <div className="bg-[#050B1A] text-slate-100">
           <style>{`
