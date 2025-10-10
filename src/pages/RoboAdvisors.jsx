@@ -1,6 +1,6 @@
 // MyFreeStocks Robo-Advisors (Next-Gen AI Investors)
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ScoreBadge from "../components/score/ScoreBadge";
 
 const aiPlatforms = [
@@ -215,9 +215,9 @@ export default function RoboAdvisors() {
             <Link to="/offers" className="transition hover:text-emerald-300">
               Offers
             </Link>
-            <a href="/#how-it-works" className="transition hover:text-emerald-300">
+            <NavLink to="/how-it-works" className="transition hover:text-emerald-300">
               How It Works
-            </a>
+            </NavLink>
             <Link to="/robo-advisors" className="transition hover:text-emerald-300">
               AI Robo-Advisors
             </Link>

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ScoreBadge from "../components/score/ScoreBadge";
 import ScoreTicker from "../components/score/ScoreTicker";
 import BrokerBox from "../components/offers/BrokerBox";
@@ -124,9 +124,9 @@ export default function OffersPage() {
             <Link to="/offers" className="transition hover:text-emerald-300">
               Offers
             </Link>
-            <a href="/#how-it-works" className="transition hover:text-emerald-300">
+            <NavLink to="/how-it-works" className="transition hover:text-emerald-300">
               How It Works
-            </a>
+            </NavLink>
             <a href="/#ai-robo" className="transition hover:text-emerald-300">
               AI Robo-Advisors
             </a>

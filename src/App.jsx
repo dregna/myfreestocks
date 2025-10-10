@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const tickerItems = [
   { symbol: "AAPL", change: "+1.24%" },
@@ -126,9 +126,12 @@ export default function App() {
             <a href="/offers" className={getDesktopNavClass("/offers")}>
               Offers
             </a>
-            <a href="#how-it-works" className={getDesktopNavClass("/", { highlight: false })}>
+            <NavLink
+              to="/how-it-works"
+              className={getDesktopNavClass("/how-it-works", { highlight: false })}
+            >
               How It Works
-            </a>
+            </NavLink>
             <a href="/robo-advisors" className={getDesktopNavClass("/robo-advisors")}>
               AI Robo-Advisors
             </a>
