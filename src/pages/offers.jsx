@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import ScoreBadge from "../components/score/ScoreBadge";
 import ScoreTicker from "../components/score/ScoreTicker";
 import BrokerBox from "../components/offers/BrokerBox";
@@ -18,7 +18,6 @@ function computeScore(breakdown = {}) {
 const DEFAULT_VERIFICATION_TEXT = "Verified quarterly from broker data feed";
 
 export default function OffersPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {
     data: brokerData,
     isLoading: brokersLoading,
@@ -103,118 +102,11 @@ export default function OffersPage() {
     };
   }, [sortedOffers]);
 
-  const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
-  const handleCloseMenu = () => setIsMenuOpen(false);
-
   return (
-    <div className="min-h-screen bg-[#050B1A] text-slate-100">
-      <style>{`
-        @keyframes ticker {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-
-      <header className="border-b border-slate-800 bg-[#050B1A]/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
-          <Link to="/" className="flex items-center gap-3" onClick={handleCloseMenu}>
-            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="h-9 w-auto" />
-          </Link>
-          <nav className="hidden items-center gap-6 text-sm font-medium text-slate-200 md:flex">
-            <Link to="/offers" className="transition hover:text-emerald-300">
-              Offers
-            </Link>
-            <NavLink to="/how-it-works" className="transition hover:text-emerald-300">
-              How It Works
-            </NavLink>
-            <a href="/#ai-robo" className="transition hover:text-emerald-300">
-              AI Robo-Advisors
-            </a>
-            <a href="/#contact" className="transition hover:text-emerald-300">
-              Contact
-            </a>
-          </nav>
-          <a
-            href="/offers"
-            className="hidden rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110 md:inline-flex"
-          >
-            Compare Offers
-          </a>
-          <button
-            type="button"
-            onClick={handleToggleMenu}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition duration-200 ease-in-out hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 md:hidden"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-          >
-            <span className="sr-only">Toggle navigation menu</span>
-            <span className="flex h-5 w-6 flex-col items-center justify-between">
-              <span
-                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
-                  isMenuOpen ? "translate-y-1.5 rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
-                  isMenuOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`h-0.5 w-full rounded-full bg-white transition duration-200 ease-in-out ${
-                  isMenuOpen ? "-translate-y-1.5 -rotate-45" : ""
-                }`}
-              />
-            </span>
-          </button>
-        </div>
-        <div
-          className={`md:hidden transform border-t border-slate-800 bg-[#0B1622] text-white transition-all duration-200 ease-in-out ${
-            isMenuOpen ? "max-h-96 opacity-100" : "pointer-events-none max-h-0 opacity-0"
-          }`}
-        >
-          <nav className="flex flex-col gap-2 px-4 py-4 text-sm font-semibold">
-            <Link
-              to="/"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Home
-            </Link>
-            <Link
-              to="/offers"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Offers
-            </Link>
-            <a
-              href="/#compare"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Compare
-            </a>
-            <a
-              href="/#ai-robo"
-              onClick={handleCloseMenu}
-              className="rounded-lg px-3 py-2 transition hover:bg-white/10"
-            >
-              Robo-Advisors
-            </a>
-            <a
-              href="/offers"
-              onClick={handleCloseMenu}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-            >
-              See Offers
-            </a>
-          </nav>
-        </div>
-      </header>
-
+    <div className="bg-[#050B1A] text-slate-100">
       <ScoreTicker brokers={sortedOffers} />
 
-      <main className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-6xl px-4 pb-24">
         <section className="mt-12 rounded-3xl bg-gradient-to-br from-[#0A1328] via-[#0F1D3A] to-[#12224A] p-10 shadow-[0_40px_120px_-60px_rgba(16,185,129,0.7)]">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
@@ -325,14 +217,18 @@ export default function OffersPage() {
           </div>
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-4">
-              {["Transparency digs into fee clarity and disclosures.", "Cost covers commissions, spreads, and account minimums.", "Features evaluate investing tools, automation, and integrations.", "Support measures human and digital help options.", "Returns tracks historical performance where disclosed."].map(
-                (item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-emerald-400/10 bg-[#0B1A33] p-4">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
-                    <p className="text-sm text-slate-200">{item}</p>
-                  </div>
-                )
-              )}
+              {[
+                "Transparency digs into fee clarity and disclosures.",
+                "Cost covers commissions, spreads, and account minimums.",
+                "Features evaluate investing tools, automation, and integrations.",
+                "Support measures human and digital help options.",
+                "Returns tracks historical performance where disclosed.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-2xl border border-emerald-400/10 bg-[#0B1A33] p-4">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                  <p className="text-sm text-slate-200">{item}</p>
+                </div>
+              ))}
             </div>
             <div className="flex items-center justify-center">
               <div className="relative flex h-56 w-56 items-center justify-center rounded-full border-2 border-emerald-400/40 bg-[#0B1A33] shadow-inner shadow-emerald-500/20">
@@ -442,31 +338,7 @@ export default function OffersPage() {
               ))}
           </div>
         </section>
-      </main>
-
-      <footer className="mt-24 border-t border-slate-800 bg-[#050B1A]">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 md:flex-row md:items-center md:justify-between">
-          <div>
-            <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="mb-3 h-8 w-auto" />
-            <p className="text-xs text-slate-400">Curated free stock offers & robo-advisor insights</p>
-          </div>
-          <div className="text-sm text-slate-400">
-            © {new Date().getFullYear()} MyFreeStocks.com. All rights reserved.
-          </div>
-          <div className="flex gap-4 text-sm text-emerald-300">
-            <a href="#" className="transition hover:text-emerald-200">
-              Privacy
-            </a>
-            <a href="#" className="transition hover:text-emerald-200">
-              Terms
-            </a>
-            <a href="#" className="transition hover:text-emerald-200">
-              Support
-            </a>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
-

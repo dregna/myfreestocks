@@ -2,16 +2,23 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 py-6 px-6 text-sm text-gray-500">
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="flex items-center space-x-2 mb-3 md:mb-0">
-          <img src="/favicon.svg" className="h-5 w-5" alt="Logo" />
-          <span>© {new Date().getFullYear()} MyFreeStocks</span>
+    <footer className="mt-24 border-t border-slate-800 bg-[#050B1A]">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+        <div>
+          <img src="/logo-dark.svg" alt="MyFreeStocks.com" className="mb-3 h-8 w-auto" />
+          <p className="text-xs">Curated free stock offers & robo-advisor insights</p>
         </div>
-        <div className="space-x-4">
-          <a href="#" className="hover:text-primary">Disclosure</a>
-          <a href="#" className="hover:text-primary">Privacy</a>
-          <a href="#" className="hover:text-primary">Terms</a>
+        <div>© {new Date().getFullYear()} MyFreeStocks.com. All rights reserved.</div>
+        <div className="flex gap-4 text-xs text-emerald-300">
+          <a href="#" className="transition hover:text-emerald-200">
+            Privacy
+          </a>
+          <a href="#" className="transition hover:text-emerald-200">
+            Terms
+          </a>
+          <a href="#" className="transition hover:text-emerald-200">
+            Support
+          </a>
         </div>
       </div>
     </footer>
