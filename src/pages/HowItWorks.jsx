@@ -70,118 +70,120 @@ const faqItems = [
 export default function HowItWorks() {
   return (
     <PageShell>
-      <section className="text-center py-12">
-        <div className="relative overflow-hidden">
-          <div className="absolute -top-20 right-10 hidden h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl lg:block" />
-          <div className="absolute -bottom-24 left-[-4rem] hidden h-80 w-80 rounded-full bg-sky-500/10 blur-3xl lg:block" />
+      <div className="bg-[#050B1A] text-slate-100 min-h-screen">
+        <section className="text-center py-12">
+          <div className="relative overflow-hidden">
+            <div className="absolute -top-20 right-10 hidden h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl lg:block" />
+            <div className="absolute -bottom-24 left-[-4rem] hidden h-80 w-80 rounded-full bg-sky-500/10 blur-3xl lg:block" />
 
-          <div className="relative mx-auto flex max-w-5xl flex-col gap-16 px-6 py-16 sm:py-20 lg:py-24">
-            <div className="text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-emerald-200">
-                Playbook
-              </span>
-              <h1 className="mt-6 text-4xl font-bold text-white sm:text-5xl">
-                How the MyFreeStocks Bonus Engine Works
-              </h1>
-              <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
-                From discovery to cashing in your free shares, we orchestrate every step so you focus on building wealth—not decoding fine print.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-16 text-left">
-              <section className="grid gap-8 md:grid-cols-3">
-                {workflowSteps.map((step) => (
-                  <div key={step.title} className="flex flex-col gap-4 rounded-3xl border border-white/5 bg-white/5 p-6">
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/20 text-sm font-semibold text-emerald-200">
-                      {step.title.split(" ")[0]}
-                    </div>
-                    <div className="space-y-2">
-                      <h2 className="text-xl font-semibold text-white">{step.title}</h2>
-                      <p className="text-sm leading-relaxed text-slate-300">{step.description}</p>
-                      <p className="text-xs text-slate-400">{step.detail}</p>
-                    </div>
-                  </div>
-                ))}
-              </section>
-
-              <section className="rounded-3xl border border-white/5 bg-white/5 p-8">
-                <h2 className="text-2xl font-semibold text-white sm:text-3xl">Your Expected Timeline</h2>
-                <p className="mt-2 text-sm text-slate-300">
-                  Use this as a guide for the average promotion. We track each brokerage individually so you always have real-time status.
+            <div className="relative mx-auto flex max-w-5xl flex-col gap-16 px-6 py-16 sm:py-20 lg:py-24">
+              <div className="text-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-emerald-200">
+                  Playbook
+                </span>
+                <h1 className="mt-6 text-4xl font-bold text-white sm:text-5xl">
+                  How the MyFreeStocks Bonus Engine Works
+                </h1>
+                <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
+                  From discovery to cashing in your free shares, we orchestrate every step so you focus on building wealth—not decoding fine print.
                 </p>
-                <div className="mt-8 grid gap-6 md:grid-cols-2">
-                  {timeline.map((item) => (
-                    <div key={item.phase} className="rounded-2xl border border-emerald-400/20 bg-[#071024] p-6">
-                      <span className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-300">{item.phase}</span>
-                      <h3 className="mt-3 text-lg font-semibold text-white">{item.headline}</h3>
-                      <p className="mt-2 text-sm text-slate-300">{item.body}</p>
+              </div>
+
+              <div className="flex flex-col gap-16 text-left">
+                <section className="grid gap-8 md:grid-cols-3">
+                  {workflowSteps.map((step) => (
+                    <div key={step.title} className="flex flex-col gap-4 rounded-3xl border border-white/5 bg-white/5 p-6">
+                      <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/20 text-sm font-semibold text-emerald-200">
+                        {step.title.split(" ")[0]}
+                      </div>
+                      <div className="space-y-2">
+                        <h2 className="text-xl font-semibold text-white">{step.title}</h2>
+                        <p className="text-sm leading-relaxed text-slate-300">{step.description}</p>
+                        <p className="text-xs text-slate-400">{step.detail}</p>
+                      </div>
                     </div>
                   ))}
-                </div>
-              </section>
+                </section>
 
-              <section className="rounded-3xl border border-emerald-400/20 bg-[#071024] p-8">
-                <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-                  <div>
-                    <h2 className="text-2xl font-semibold text-white sm:text-3xl">Confidence from Compliance</h2>
-                    <p className="mt-3 text-sm text-slate-300">
-                      Every recommendation runs through our compliance checks. We validate disclosures, custody protections, and payout histories for each offer.
-                    </p>
-                    <ul className="mt-6 space-y-3 text-sm text-slate-300">
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
-                        24/7 monitoring for offer expirations and requirement updates.
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
-                        Historical performance tracking to surface the most reliable brokers.
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
-                        Benchmarks that show you when to pivot to higher-value deals.
-                      </li>
-                    </ul>
+                <section className="rounded-3xl border border-white/5 bg-white/5 p-8">
+                  <h2 className="text-2xl font-semibold text-white sm:text-3xl">Your Expected Timeline</h2>
+                  <p className="mt-2 text-sm text-slate-300">
+                    Use this as a guide for the average promotion. We track each brokerage individually so you always have real-time status.
+                  </p>
+                  <div className="mt-8 grid gap-6 md:grid-cols-2">
+                    {timeline.map((item) => (
+                      <div key={item.phase} className="rounded-2xl border border-emerald-400/20 bg-[#071024] p-6">
+                        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-300">{item.phase}</span>
+                        <h3 className="mt-3 text-lg font-semibold text-white">{item.headline}</h3>
+                        <p className="mt-2 text-sm text-slate-300">{item.body}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div className="rounded-3xl border border-white/5 bg-white/5 p-6">
-                    <h3 className="text-lg font-semibold text-white">Investor FAQs</h3>
-                    <div className="mt-4 space-y-4 text-sm text-slate-300">
-                      {faqItems.map((item) => (
-                        <div key={item.question}>
-                          <p className="font-semibold text-emerald-200">{item.question}</p>
-                          <p className="mt-1 text-xs text-slate-400">{item.answer}</p>
-                        </div>
-                      ))}
+                </section>
+
+                <section className="rounded-3xl border border-emerald-400/20 bg-[#071024] p-8">
+                  <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+                    <div>
+                      <h2 className="text-2xl font-semibold text-white sm:text-3xl">Confidence from Compliance</h2>
+                      <p className="mt-3 text-sm text-slate-300">
+                        Every recommendation runs through our compliance checks. We validate disclosures, custody protections, and payout histories for each offer.
+                      </p>
+                      <ul className="mt-6 space-y-3 text-sm text-slate-300">
+                        <li className="flex items-start gap-3">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                          24/7 monitoring for offer expirations and requirement updates.
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                          Historical performance tracking to surface the most reliable brokers.
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                          Benchmarks that show you when to pivot to higher-value deals.
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="rounded-3xl border border-white/5 bg-white/5 p-6">
+                      <h3 className="text-lg font-semibold text-white">Investor FAQs</h3>
+                      <div className="mt-4 space-y-4 text-sm text-slate-300">
+                        {faqItems.map((item) => (
+                          <div key={item.question}>
+                            <p className="font-semibold text-emerald-200">{item.question}</p>
+                            <p className="mt-1 text-xs text-slate-400">{item.answer}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              <section className="my-4 rounded-3xl border border-white/5 bg-[#040b18] p-8 text-center shadow-[0_40px_120px_-80px_rgba(16,185,129,0.6)]">
-                <h2 className="text-3xl font-semibold text-white">Ready to Unlock Your Next Bonus?</h2>
-                <p className="mt-3 text-sm text-slate-300">
-                  Explore the live dashboard of broker promotions, curated daily with payout estimates and risk checks.
-                </p>
-                <a
-                  href="/offers"
-                  className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-                >
-                  View Current Offers
-                </a>
-              </section>
+                <section className="my-4 rounded-3xl border border-white/5 bg-[#040b18] p-8 text-center shadow-[0_40px_120px_-80px_rgba(16,185,129,0.6)]">
+                  <h2 className="text-3xl font-semibold text-white">Ready to Unlock Your Next Bonus?</h2>
+                  <p className="mt-3 text-sm text-slate-300">
+                    Explore the live dashboard of broker promotions, curated daily with payout estimates and risk checks.
+                  </p>
+                  <a
+                    href="/offers"
+                    className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
+                  >
+                    View Current Offers
+                  </a>
+                </section>
 
-              <section className="my-16">
-                <h2 className="text-2xl font-bold mb-4 text-center text-white">
-                  AI Market Visualization (Experimental)
-                </h2>
-                <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-slate-300">
-                  This prototype replays the Dow Jones Industrial Average to visualize intraday sentiment swings. Future versions will stream live data for active monitoring.
-                </p>
-                <MarketSentimentVisualizer />
-              </section>
+                <section className="my-16">
+                  <h2 className="text-2xl font-bold mb-4 text-center text-white">
+                    AI Market Visualization (Experimental)
+                  </h2>
+                  <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-slate-300">
+                    This prototype replays the Dow Jones Industrial Average to visualize intraday sentiment swings. Future versions will stream live data for active monitoring.
+                  </p>
+                  <MarketSentimentVisualizer />
+                </section>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </PageShell>
   );
 }
