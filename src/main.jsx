@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Offers from "./pages/offers.jsx";
 import BrokerDeepDivePage from "./pages/broker/[slug].jsx";
 import RoboAdvisors from "./pages/RoboAdvisors.jsx";
+import HowItWorks from "./pages/HowItWorks.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/offers" element={<Offers />} />
         <Route path="/broker/:slug" element={<BrokerDeepDivePage />} />
         <Route path="/robo-advisors" element={<RoboAdvisors />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
